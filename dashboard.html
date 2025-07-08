@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      .dashboard-container {
+        background: #f7faff;
+        padding: 2.5rem 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(60, 90, 130, 0.10);
+        width: 100%;
+        max-width: 400px;
+        margin: 2rem auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .dashboard-info {
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: #e6ecf5;
+        display: block;
+        margin: 0 auto 1rem auto;
+      }
+      .profile-placeholder {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: #c3d0e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem auto;
+        font-size: 2.5rem;
+        color: #fff;
+      }
+      .logout-btn, .update-btn {
+        background: #5b8bd8;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0.7rem 2rem;
+        font-size: 1.08rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        box-shadow: 0 2px 8px rgba(60, 90, 130, 0.08);
+        margin-bottom: 0.5rem;
+      }
+      .logout-btn:hover, .update-btn:hover {
+        background: #3a5e9a;
+        color: #e6ecf5;
+      }
+      .update-profile-modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(44, 62, 80, 0.25);
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+      .update-profile-content {
+        background: #fff;
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(60, 90, 130, 0.15);
+        min-width: 300px;
+        max-width: 90vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .close-modal {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #5b8bd8;
+        position: absolute;
+        top: 1.5rem;
+        right: 2rem;
+        cursor: pointer;
+      }
+      .update-profile-content .input-group {
+        width: 100%;
+      }
+      .update-profile-content .form-actions {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 1rem;
+      }
+      .cancel-btn {
+        background: #c3d0e6;
+        color: #2d3a4a;
+        border: none;
+        border-radius: 6px;
+        padding: 0.7rem 1.5rem;
+        font-size: 1.08rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .cancel-btn:hover {
+        background: #b2becd;
+        color: #222;
+      }
+      .delete-btn {
+        background: #e17055;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0.7rem 1.5rem;
+        font-size: 1.08rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .delete-btn:hover {
+        background: #d63031;
+        color: #fff;
+      }
+      /* Custom popup modal */
+      #customPopup {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(44, 62, 80, 0.25);
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+        animation: fadeInBg 0.3s;
+      }
+      #customPopup.active {
+        display: flex;
+      }
+      .custom-popup-content {
+        background: #fff;
+        padding: 2rem 2.5rem;
+        border-radius: 14px;
+        box-shadow: 0 8px 32px rgba(60, 90, 130, 0.18);
+        min-width: 260px;
+        max-width: 90vw;
+        text-align: center;
+        animation: popupIn 0.3s;
+      }
+      #customPopupMsg {
+        font-size: 1.1rem;
+        color: #2d3a4a;
+        margin-bottom: 1.5rem;
+        display: block;
+      }
+      #customPopupOkBtn {
+        background: #5b8bd8;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0.6rem 2rem;
+        font-size: 1.05rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      #customPopupOkBtn:hover {
+        background: #3a5e9a;
+        color: #e6ecf5;
+      }
+      @keyframes fadeInBg {
+        from { opacity: 0; } to { opacity: 1; }
+      }
+      @keyframes popupIn {
+        from { transform: translateY(-30px) scale(0.95); opacity: 0; }
+        to { transform: translateY(0) scale(1); opacity: 1; }
+      }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-info">
+            <div id="profilePicContainer">
+                <!-- Profile picture or placeholder will be rendered here -->
+            </div>
+            <h2 id="greeting">Welcome!</h2>
+            <p><strong>School ID:</strong> <span id="schoolId">...</span></p>
+            <p><strong>Email:</strong> <span id="userEmail">...</span></p>
+        </div>
+        <button class="update-btn" id="showUpdateProfileBtn">Update Profile</button>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+    </div>
+    <!-- Update Profile Modal -->
+    <div class="update-profile-modal" id="updateProfileModal">
+      <div class="update-profile-content">
+        <button class="close-modal" id="closeUpdateProfileModal">&times;</button>
+        <h3>Update Profile</h3>
+        <form id="updateProfileForm">
+          <div class="input-group">
+            <label for="updateFirstName">First Name</label>
+            <input type="text" id="updateFirstName" required>
+          </div>
+          <div class="input-group">
+            <label for="updateLastName">Last Name</label>
+            <input type="text" id="updateLastName" required>
+          </div>
+          <div class="input-group">
+            <label for="updateProfilePic">Profile Picture</label>
+            <input type="file" id="updateProfilePic" accept="image/*">
+            <img id="updateProfilePicPreview" src="" alt="Profile Preview" style="display:none;max-width:100px;margin-top:8px;border-radius:8px;" />
+          </div>
+          <div class="form-actions">
+            <button type="submit">Save Changes</button>
+            <button type="button" class="cancel-btn" id="cancelUpdateProfileBtn">Cancel</button>
+            <button type="button" class="delete-btn" id="deleteProfilePicBtn">Delete Profile Picture</button>
+          </div>
+          <div id="updateProfileError" class="error-message hidden"></div>
+        </form>
+      </div>
+    </div>
+    <!-- Custom Popup Modal -->
+    <div id="customPopup">
+      <div class="custom-popup-content">
+        <span id="customPopupMsg"></span>
+        <button id="customPopupOkBtn">OK</button>
+      </div>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+</html> 
