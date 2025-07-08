@@ -159,3 +159,55 @@ button[type="submit"]:hover {
     font-size: 1rem;
   }
 } 
+
+#customPopup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44, 62, 80, 0.25);
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeInBg 0.3s;
+}
+#customPopup.active {
+  display: flex;
+}
+.custom-popup-content {
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(60, 90, 130, 0.18);
+  min-width: 260px;
+  max-width: 90vw;
+  text-align: center;
+  animation: popupIn 0.3s;
+}
+#customPopupMsg {
+  font-size: 1.1rem;
+  color: #2d3a4a;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+#customPopupOkBtn {
+  background: #5b8bd8;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#customPopupOkBtn:hover {
+  background: #3a5e9a;
+  color: #e6ecf5;
+}
+@keyframes fadeInBg {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes popupIn {
+  from { transform: translateY(-30px) scale(0.95); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+} 
