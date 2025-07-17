@@ -28,11 +28,6 @@
         <form id="registerForm" class="form hidden">
             <h2>Register</h2>
             <div class="input-group">
-                <label for="profilePic">Profile Picture</label>
-                <input type="file" id="profilePic" accept="image/*">
-                <img id="profilePicPreview" src="" alt="Profile Preview" style="display:none;max-width:100px;margin-top:8px;border-radius:8px;" />
-            </div>
-            <div class="input-group">
                 <label for="firstName">First Name</label>
                 <input type="text" id="firstName" required>
             </div>
@@ -41,16 +36,13 @@
                 <input type="text" id="lastName" required>
             </div>
             <div class="input-group">
-                <label for="age">Age</label>
-                <input type="number" id="age" min="1" required>
-            </div>
-            <div class="input-group">
                 <label for="birthdate">Birthdate</label>
                 <input type="date" id="birthdate" required>
             </div>
             <div class="input-group">
-                <label for="schoolId">School ID</label>
-                <input type="text" id="schoolId" required placeholder="Enter your school ID">
+                <label for="age">Age</label>
+                <input type="number" id="age" readonly placeholder="Auto-calculated">
+                <small style="color:#5c6b82;">Age is auto-calculated from birthdate</small>
             </div>
             <div class="input-group">
                 <label for="regEmail">Email</label>
@@ -80,4 +72,4 @@
       </div>
     </div>
 </body>
-</html> 
+</html>

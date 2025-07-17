@@ -211,3 +211,318 @@ button[type="submit"]:hover {
   from { transform: translateY(-30px) scale(0.95); opacity: 0; }
   to { transform: translateY(0) scale(1); opacity: 1; }
 } 
+
+/* --- Sidebar and Navigation --- */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  background: #0a3d62;
+  padding: 2rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-shadow: 2px 0 12px rgba(44, 62, 80, 0.08);
+  z-index: 20;
+  margin-bottom: 0;
+  transition: transform 0.25s;
+}
+.nav-bar.mobile-hidden {
+  transform: translateX(-220px);
+}
+.nav-bar.mobile-visible {
+  transform: translateX(0);
+}
+.burger-btn {
+  display: none;
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
+  z-index: 30;
+  width: 38px;
+  height: 38px;
+  background: #0a3d62;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 2rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.13);
+}
+.burger-btn:active {
+  background: #3c6382;
+}
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  margin-left: 0;
+}
+.nav-link {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.7rem 2rem;
+  border-radius: 6px 0 0 6px;
+  transition: background 0.18s, color 0.18s;
+  width: 100%;
+  display: block;
+}
+.nav-link:hover, .nav-link.active {
+  background: #3c6382;
+  color: #e6ecf5;
+}
+.sidebar-profile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.2rem;
+}
+.sidebar-profile-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(44, 62, 80, 0.13);
+  margin-bottom: 0.7rem;
+}
+.sidebar-profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.sidebar-profile-name {
+  color: #fff;
+  font-size: 1.08rem;
+  font-weight: 600;
+  text-align: center;
+  word-break: break-word;
+}
+.settings-dropdown {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: #fff;
+  min-width: 160px;
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.13);
+  border-radius: 8px;
+  margin-left: 8px;
+  padding: 0.5rem 0;
+  z-index: 100;
+}
+.settings-dropdown.show {
+  display: block;
+}
+.settings-dropdown-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #222;
+  font-size: 1rem;
+  text-align: left;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background 0.18s;
+}
+.settings-dropdown-btn:hover {
+  background: #f7faff;
+}
+
+/* --- Biodata Container, Tables, and Sections --- */
+.biodata-container {
+  background: #fff;
+  max-width: 900px;
+  margin: 2.5rem auto 2.5rem 220px;
+  border-radius: 16px;
+  box-shadow: 0 6px 32px rgba(60, 90, 130, 0.13);
+  padding: 2.5rem 2rem 2rem 2rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+.biodata-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0a3d62;
+  margin-bottom: 2.2rem;
+}
+.biodata-section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 2.2rem 0 1.1rem 0;
+  color: #222;
+}
+.biodata-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+.biodata-table th, .biodata-table td {
+  border: 1px solid #c3d0e6;
+  padding: 0.7rem 1rem;
+  text-align: left;
+  font-size: 1.05rem;
+}
+.biodata-table th {
+  background: #f7faff;
+  color: #3a5e9a;
+  font-weight: 600;
+  width: 220px;
+}
+.biodata-table td {
+  color: #2d3a4a;
+}
+.biodata-list {
+  margin: 0 0 1.5rem 1.5rem;
+  padding: 0;
+  color: #2d3a4a;
+}
+.biodata-subtable th, .biodata-subtable td {
+  font-size: 1rem;
+  padding: 0.5rem 0.7rem;
+}
+.biodata-subtable th {
+  width: 160px;
+}
+.biodata-section {
+  margin-bottom: 2rem;
+}
+
+/* --- Edit Profile & Special Buttons --- */
+.add-btn {
+  background: #5b8bd8;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  transition: background 0.2s;
+}
+.add-btn:hover {
+  background: #3a5e9a;
+}
+.save-btn {
+  background: #0984e3;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 2rem auto 0 auto;
+  display: block;
+  transition: background 0.2s;
+}
+.save-btn:hover {
+  background: #3a5e9a;
+}
+.back-btn {
+  margin-bottom: 1.2rem;
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
+  background: #dfe6e9;
+  color: #0a3d62;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 1.5rem 0.45rem 1.1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  display: inline-block;
+}
+.back-btn:hover {
+  background: #b2bec3;
+  color: #222;
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.13);
+}
+.biodata-table input, .biodata-table textarea, .biodata-table select {
+  width: 100%;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #c3d0e6;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: #f7faff;
+  color: #2d3a4a;
+  resize: vertical;
+}
+.biodata-table textarea {
+  min-height: 2.2rem;
+}
+.biodata-list input {
+  width: 80%;
+  margin-bottom: 0.5rem;
+}
+.biodata-list .remove-skill {
+  background: #e17055;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 0.1rem 0.6rem;
+}
+.biodata-list .remove-skill:hover {
+  background: #d63031;
+}
+
+@media (max-width: 900px) {
+  .biodata-container {
+    margin: 2.5rem 0.5rem 2.5rem 0.5rem;
+  }
+  .nav-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 200px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 2rem 0 2rem 0;
+    box-shadow: 2px 0 12px rgba(44, 62, 80, 0.08);
+    transform: translateX(-220px);
+  }
+  .nav-bar.mobile-visible {
+    transform: translateX(0);
+  }
+  .burger-btn {
+    display: flex;
+  }
+  .biodata-container {
+    margin-left: 0;
+  }
+}
+@media print {
+  body {
+    background: #fff;
+  }
+  .biodata-container {
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .save-btn, .add-btn, .remove-skill {
+    display: none !important;
+  }
+} 

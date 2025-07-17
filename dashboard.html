@@ -3,235 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Work Biodata</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-      .dashboard-container {
-        background: #f7faff;
-        padding: 2.5rem 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 24px rgba(60, 90, 130, 0.10);
-        width: 100%;
-        max-width: 400px;
-        margin: 2rem auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .dashboard-info {
-        margin-bottom: 2rem;
-        text-align: center;
-      }
-      .profile-pic {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        background: #e6ecf5;
-        display: block;
-        margin: 0 auto 1rem auto;
-      }
-      .profile-placeholder {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        background: #c3d0e6;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1rem auto;
-        font-size: 2.5rem;
-        color: #fff;
-      }
-      .logout-btn, .update-btn {
-        background: #5b8bd8;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        padding: 0.7rem 2rem;
-        font-size: 1.08rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s;
-        box-shadow: 0 2px 8px rgba(60, 90, 130, 0.08);
-        margin-bottom: 0.5rem;
-      }
-      .logout-btn:hover, .update-btn:hover {
-        background: #3a5e9a;
-        color: #e6ecf5;
-      }
-      .update-profile-modal {
-        display: none;
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(44, 62, 80, 0.25);
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-      }
-      .update-profile-content {
-        background: #fff;
-        padding: 2rem 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 24px rgba(60, 90, 130, 0.15);
-        min-width: 300px;
-        max-width: 90vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .close-modal {
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        color: #5b8bd8;
-        position: absolute;
-        top: 1.5rem;
-        right: 2rem;
-        cursor: pointer;
-      }
-      .update-profile-content .input-group {
-        width: 100%;
-      }
-      .update-profile-content .form-actions {
-        display: flex;
-        gap: 1rem;
-        width: 100%;
-        justify-content: flex-end;
-        margin-top: 1rem;
-      }
-      .cancel-btn {
-        background: #c3d0e6;
-        color: #2d3a4a;
-        border: none;
-        border-radius: 6px;
-        padding: 0.7rem 1.5rem;
-        font-size: 1.08rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .cancel-btn:hover {
-        background: #b2becd;
-        color: #222;
-      }
-      .delete-btn {
-        background: #e17055;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        padding: 0.7rem 1.5rem;
-        font-size: 1.08rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      .delete-btn:hover {
-        background: #d63031;
-        color: #fff;
-      }
-      /* Custom popup modal */
-      #customPopup {
-        display: none;
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(44, 62, 80, 0.25);
-        align-items: center;
-        justify-content: center;
-        z-index: 2000;
-        animation: fadeInBg 0.3s;
-      }
-      #customPopup.active {
-        display: flex;
-      }
-      .custom-popup-content {
-        background: #fff;
-        padding: 2rem 2.5rem;
-        border-radius: 14px;
-        box-shadow: 0 8px 32px rgba(60, 90, 130, 0.18);
-        min-width: 260px;
-        max-width: 90vw;
-        text-align: center;
-        animation: popupIn 0.3s;
-      }
-      #customPopupMsg {
-        font-size: 1.1rem;
-        color: #2d3a4a;
-        margin-bottom: 1.5rem;
-        display: block;
-      }
-      #customPopupOkBtn {
-        background: #5b8bd8;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        padding: 0.6rem 2rem;
-        font-size: 1.05rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-      #customPopupOkBtn:hover {
-        background: #3a5e9a;
-        color: #e6ecf5;
-      }
-      @keyframes fadeInBg {
-        from { opacity: 0; } to { opacity: 1; }
-      }
-      @keyframes popupIn {
-        from { transform: translateY(-30px) scale(0.95); opacity: 0; }
-        to { transform: translateY(0) scale(1); opacity: 1; }
-      }
-    </style>
 </head>
 <body>
-    <div class="dashboard-container">
-        <div class="dashboard-info">
-            <div id="profilePicContainer">
-                <!-- Profile picture or placeholder will be rendered here -->
-            </div>
-            <h2 id="greeting">Welcome!</h2>
-            <p><strong>School ID:</strong> <span id="schoolId">...</span></p>
-            <p><strong>Email:</strong> <span id="userEmail">...</span></p>
+  <button class="burger-btn" id="burgerBtn">☰</button>
+  <nav class="nav-bar" id="navBar">
+    <div class="sidebar-profile">
+      <div class="sidebar-profile-photo">
+        <img id="sidebarPhoto" src="" alt="Profile Photo" style="display:none;" onerror="this.style.display='none';document.getElementById('sidebarPhotoPlaceholder').style.display='';">
+        <span id="sidebarPhotoPlaceholder" style="font-size:1.7rem;">👤</span>
+      </div>
+      <div class="sidebar-profile-name" id="sidebarName">input data</div>
+    </div>
+    <div class="nav-links">
+      <a href="#" class="nav-link active">Profile</a>
+      <div style="position: relative; width: 100%;">
+        <a href="#" class="nav-link" id="settingsLink">Settings</a>
+        <div class="settings-dropdown" id="settingsDropdown">
+          <button class="settings-dropdown-btn" id="editProfileBtn">Edit Profile</button>
+          <button class="settings-dropdown-btn" id="logoutBtn">Logout</button>
         </div>
-        <button class="update-btn" id="showUpdateProfileBtn">Update Profile</button>
-        <button class="logout-btn" id="logoutBtn">Logout</button>
-    </div>
-    <!-- Update Profile Modal -->
-    <div class="update-profile-modal" id="updateProfileModal">
-      <div class="update-profile-content">
-        <button class="close-modal" id="closeUpdateProfileModal">&times;</button>
-        <h3>Update Profile</h3>
-        <form id="updateProfileForm">
-          <div class="input-group">
-            <label for="updateFirstName">First Name</label>
-            <input type="text" id="updateFirstName" required>
-          </div>
-          <div class="input-group">
-            <label for="updateLastName">Last Name</label>
-            <input type="text" id="updateLastName" required>
-          </div>
-          <div class="input-group">
-            <label for="updateProfilePic">Profile Picture</label>
-            <input type="file" id="updateProfilePic" accept="image/*">
-            <img id="updateProfilePicPreview" src="" alt="Profile Preview" style="display:none;max-width:100px;margin-top:8px;border-radius:8px;" />
-          </div>
-          <div class="form-actions">
-            <button type="submit">Save Changes</button>
-            <button type="button" class="cancel-btn" id="cancelUpdateProfileBtn">Cancel</button>
-            <button type="button" class="delete-btn" id="deleteProfilePicBtn">Delete Profile Picture</button>
-          </div>
-          <div id="updateProfileError" class="error-message hidden"></div>
-        </form>
       </div>
     </div>
-    <!-- Custom Popup Modal -->
-    <div id="customPopup">
-      <div class="custom-popup-content">
-        <span id="customPopupMsg"></span>
-        <button id="customPopupOkBtn">OK</button>
-      </div>
+  </nav>
+  <div class="edit-profile-modal" id="editProfileModal">
+    <div class="edit-profile-content">
+      <h3>Edit Profile</h3>
+      <form id="editProfileForm">
+        <div class="input-group">
+          <label for="editProfileName">Full Name</label>
+          <input type="text" id="editProfileName" required>
+        </div>
+        <div class="input-group">
+          <label for="editProfilePhoto">Profile Photo</label>
+          <input type="file" id="editProfilePhoto" accept="image/*">
+        </div>
+        <button type="submit">Save Changes</button>
+        <button type="button" id="cancelEditProfileBtn" style="margin-left:1rem;">Cancel</button>
+      </form>
     </div>
-    <script type="module" src="script.js"></script>
+  </div>
+  <div class="biodata-container">
+    <div class="biodata-title">WORK BIODATA</div>
+
+    <div class="biodata-section">
+      <div class="biodata-section-title">1. Personal Information</div>
+      <table class="biodata-table">
+        <tr><th>Full Name</th><td><span id="biodataName">input data</span></td></tr>
+        <tr><th>Date of Birth</th><td><span id="biodataBirthdate">input data</span></td></tr>
+        <tr><th>Age</th><td><span id="biodataAge">input data</span></td></tr>
+        <tr><th>Gender</th><td><span id="biodataGender">input data</span></td></tr>
+        <tr><th>Civil Status</th><td><span id="biodataCivilStatus">input data</span></td></tr>
+        <tr><th>Nationality</th><td><span id="biodataNationality">input data</span></td></tr>
+        <tr><th>Religion</th><td><span id="biodataReligion">input data</span></td></tr>
+        <tr><th>Complete Address</th><td><span id="biodataAddress">input data</span></td></tr>
+        <tr><th>Contact Number</th><td><span id="biodataContactNumber">input data</span></td></tr>
+        <tr><th>Email Address</th><td><span id="biodataEmailAddress">input data</span></td></tr>
+      </table>
+    </div>
+
+    <div class="biodata-section">
+      <div class="biodata-section-title">2. Career Objective</div>
+      <div style="margin-left:1.5rem; color:#2d3a4a;"><span id="biodataStatement">input data</span></div>
+    </div>
+
+    <div class="biodata-section">
+      <div class="biodata-section-title">3. Educational Background</div>
+      <table class="biodata-table biodata-subtable">
+        <tr><th>Level</th><th>School Name</th><th>Year Graduated</th><th>Honors/Awards</th></tr>
+        <tr><td>Elementary</td><td><span id="biodataElemSchool">input data</span></td><td><span id="biodataElemYear">input data</span></td><td><span id="biodataElemHonors">input data</span></td></tr>
+        <tr><td>Secondary</td><td><span id="biodataSecSchool">input data</span></td><td><span id="biodataSecYear">input data</span></td><td><span id="biodataSecHonors">input data</span></td></tr>
+        <tr><td>Tertiary</td><td><span id="biodataTertSchool">input data</span></td><td><span id="biodataTertYear">input data</span></td><td><span id="biodataTertHonors">input data</span></td></tr>
+      </table>
+    </div>
+
+    <div class="biodata-section">
+      <div class="biodata-section-title">4. Skills and Qualifications</div>
+      <ul class="biodata-list" id="biodataSkills">
+        <li>input data</li>
+        <li>input data</li>
+        <li>input data</li>
+      </ul>
+    </div>
+
+    <div class="biodata-section">
+      <div class="biodata-section-title">5. Work Experience</div>
+      <table class="biodata-table biodata-subtable" id="biodataWorkExperience">
+        <tr><th>Position</th><th>Company Name</th><th>Inclusive Dates</th><th>Responsibilities/Highlights</th></tr>
+        <tr><td>input data</td><td>input data</td><td>input data</td><td>input data</td></tr>
+        <tr><td>input data</td><td>input data</td><td>input data</td><td>input data</td></tr>
+      </table>
+    </div>
+
+    <div class="biodata-section">
+      <div class="biodata-section-title">6. Strengths</div>
+      <ul class="biodata-list" id="biodataStrengths">
+        <li>input data</li>
+      </ul>
+      <div class="biodata-section-title" style="margin-top:2rem;">7. Weaknesses</div>
+      <ul class="biodata-list" id="biodataWeaknesses">
+        <li>input data</li>
+      </ul>
+    </div>
+  </div>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBSw3t0Picp9CrK0CsB_FXeSC7wHuZQbMw",
+    authDomain: "carlix-7fbcb.firebaseapp.com",
+    projectId: "carlix-7fbcb",
+    storageBucket: "carlix-7fbcb.firebasestorage.app",
+    messagingSenderId: "679556059179",
+    appId: "1:679556059179:web:1893b4b1063e87dd789a6e",
+    measurementId: "G-TMKR8YLFR4"
+  };
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  function setOrInput(el, value) {
+    if (el) el.textContent = value || 'input data';
+  }
+  function setOrInputImg(img, placeholder, url) {
+    if (img && url) {
+      img.src = url;
+      img.style.display = '';
+      if (placeholder) placeholder.style.display = 'none';
+      // If the image fails to load, show the placeholder
+      img.onerror = function() {
+        img.style.display = 'none';
+        if (placeholder) placeholder.style.display = '';
+      };
+    } else if (img && placeholder) {
+      img.src = '';
+      img.style.display = 'none';
+      placeholder.style.display = '';
+    }
+  }
+
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      window.location.href = 'index.html';
+      return;
+    }
+    try {
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      const data = userDoc.exists() ? userDoc.data() : {};
+      // Profile area
+      const fullName = data.fullName || ((data.firstName && data.lastName) ? data.firstName + ' ' + data.lastName : '');
+      setOrInput(document.getElementById('biodataName'), fullName);
+      setOrInput(document.getElementById('sidebarName'), fullName);
+      setOrInputImg(document.getElementById('sidebarPhoto'), document.getElementById('sidebarPhotoPlaceholder'), data.profilePicUrl);
+      // Main biodata fields
+      // Try multiple possible field names for birth date
+      const birthDate = data.dateOfBirth || data.birthdate || data.dob || '';
+      setOrInput(document.getElementById('biodataBirthdate'), birthDate);
+      setOrInput(document.getElementById('biodataAge'), data.age);
+      setOrInput(document.getElementById('biodataGender'), data.gender);
+      setOrInput(document.getElementById('biodataCivilStatus'), data.civilStatus);
+      setOrInput(document.getElementById('biodataNationality'), data.nationality);
+      setOrInput(document.getElementById('biodataReligion'), data.religion);
+      setOrInput(document.getElementById('biodataAddress'), data.address);
+      setOrInput(document.getElementById('biodataContactNumber'), data.contactNumber);
+      setOrInput(document.getElementById('biodataEmailAddress'), data.email || user.email);
+      setOrInput(document.getElementById('biodataStatement'), data.objective);
+      // Educational background
+      // Support both flat and nested education fields
+      setOrInput(document.getElementById('biodataElemSchool'), (data.education?.elementary?.school) || data.elemSchool);
+      setOrInput(document.getElementById('biodataElemYear'), (data.education?.elementary?.year) || data.elemYear);
+      setOrInput(document.getElementById('biodataElemHonors'), (data.education?.elementary?.honors) || data.elemHonors);
+      setOrInput(document.getElementById('biodataSecSchool'), (data.education?.secondary?.school) || data.secSchool);
+      setOrInput(document.getElementById('biodataSecYear'), (data.education?.secondary?.year) || data.secYear);
+      setOrInput(document.getElementById('biodataSecHonors'), (data.education?.secondary?.honors) || data.secHonors);
+      setOrInput(document.getElementById('biodataTertSchool'), (data.education?.tertiary?.school) || data.terSchool);
+      setOrInput(document.getElementById('biodataTertYear'), (data.education?.tertiary?.year) || data.terYear);
+      setOrInput(document.getElementById('biodataTertHonors'), (data.education?.tertiary?.honors) || data.terHonors);
+      // Skills (array)
+      const skillsList = document.getElementById('biodataSkills');
+      if (skillsList && Array.isArray(data.skills)) {
+        skillsList.innerHTML = '';
+        data.skills.forEach(skill => {
+          const li = document.createElement('li');
+          li.textContent = skill;
+          skillsList.appendChild(li);
+        });
+      }
+      // Work Experience (array of objects)
+      const workTable = document.getElementById('biodataWorkExperience');
+      if (workTable && Array.isArray(data.workExperience)) {
+        // Remove all rows except the header
+        workTable.innerHTML = '<tr><th>Position</th><th>Company Name</th><th>Inclusive Dates</th><th>Responsibilities/Highlights</th></tr>';
+        data.workExperience.forEach(exp => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${exp.position || ''}</td><td>${exp.company || ''}</td><td>${exp.dates || ''}</td><td>${exp.highlights || ''}</td>`;
+          workTable.appendChild(tr);
+        });
+      }
+      // Strengths (array)
+      const strengthsList = document.getElementById('biodataStrengths');
+      if (strengthsList && Array.isArray(data.strengths)) {
+        strengthsList.innerHTML = '';
+        data.strengths.forEach(strength => {
+          const li = document.createElement('li');
+          li.textContent = strength;
+          strengthsList.appendChild(li);
+        });
+      }
+      // Weaknesses (array)
+      const weaknessesList = document.getElementById('biodataWeaknesses');
+      if (weaknessesList && Array.isArray(data.weaknesses)) {
+        weaknessesList.innerHTML = '';
+        data.weaknesses.forEach(weakness => {
+          const li = document.createElement('li');
+          li.textContent = weakness;
+          weaknessesList.appendChild(li);
+        });
+      }
+    } catch (err) {
+      // Optionally show error
+    }
+  });
+
+  // Sidebar navigation logic
+  const burgerBtn = document.getElementById('burgerBtn');
+  const navBar = document.getElementById('navBar');
+  const settingsLink = document.getElementById('settingsLink');
+  const settingsDropdown = document.getElementById('settingsDropdown');
+  const editProfileBtn = document.getElementById('editProfileBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  // Burger menu toggle for mobile
+  if (burgerBtn && navBar) {
+    burgerBtn.addEventListener('click', () => {
+      navBar.classList.toggle('mobile-visible');
+      navBar.classList.toggle('mobile-hidden');
+    });
+  }
+
+  // Settings dropdown toggle
+  if (settingsLink && settingsDropdown) {
+    settingsLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      settingsDropdown.classList.toggle('show');
+    });
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!settingsDropdown.contains(e.target) && e.target !== settingsLink) {
+        settingsDropdown.classList.remove('show');
+      }
+    });
+  }
+
+  // Edit Profile navigation
+  if (editProfileBtn) {
+    editProfileBtn.addEventListener('click', () => {
+      window.location.href = 'edit_profile.html';
+    });
+  }
+  // Logout
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+      await auth.signOut();
+      window.location.href = 'index.html';
+    });
+  }
+</script>
 </body>
 </html> 

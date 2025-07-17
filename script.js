@@ -21,6 +21,29 @@ const db = getFirestore(app);
 const CLOUDINARY_CLOUD_NAME = 'dzvojulwb'; // <-- updated cloud name
 const CLOUDINARY_UNSIGNED_PRESET = 'charlix';
 
+// Cloudinary upload helper (from old code)
+async function uploadProfilePic(file) {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_UNSIGNED_PRESET);
+    // Debug log for Cloudinary config and URL
+    console.log('Cloudinary Debug:', {
+        CLOUDINARY_CLOUD_NAME,
+        CLOUDINARY_UNSIGNED_PRESET,
+        uploadUrl: `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/upload`
+    });
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/upload`, {
+        method: 'POST',
+        body: formData
+    });
+    const data = await res.json();
+    if (data.secure_url) {
+        return data.secure_url;
+    } else {
+        throw new Error('Profile picture upload failed.');
+    }
+}
+
 // Helper functions
 function showError(element, message) {
     element.textContent = message;
@@ -125,6 +148,27 @@ if (document.getElementById('loginForm') && document.getElementById('registerFor
         });
     }
 
+    // Auto-calculate age from birthdate in registration
+    const birthdateInput = document.getElementById('birthdate');
+    const ageInput = document.getElementById('age');
+    if (birthdateInput && ageInput) {
+        birthdateInput.addEventListener('change', () => {
+            const val = birthdateInput.value;
+            if (!val) {
+                ageInput.value = '';
+                return;
+            }
+            const today = new Date();
+            const birth = new Date(val);
+            let age = today.getFullYear() - birth.getFullYear();
+            const m = today.getMonth() - birth.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+                age--;
+            }
+            ageInput.value = age > 0 ? age : '';
+        });
+    }
+
     // Registration logic
     const registerForm = document.getElementById('registerForm');
     if (registerForm) {
@@ -134,7 +178,7 @@ if (document.getElementById('loginForm') && document.getElementById('registerFor
             const lastName = document.getElementById('lastName').value.trim();
             const age = document.getElementById('age').value.trim();
             const birthdate = document.getElementById('birthdate').value;
-            const schoolId = document.getElementById('schoolId').value.trim();
+            // const schoolId = document.getElementById('schoolId').value.trim(); // removed
             const email = document.getElementById('regEmail').value.trim().toLowerCase();
             const password = document.getElementById('regPassword').value;
             const repeatPassword = document.getElementById('repeatPassword').value;
@@ -142,8 +186,17 @@ if (document.getElementById('loginForm') && document.getElementById('registerFor
             hideError(errorDiv);
 
             // Validation
-            if (!firstName || !lastName || !age || !birthdate || !schoolId || !email || !password || !repeatPassword) {
+            const nameRegex = /^[A-Za-z\s'-]+$/;
+            if (!firstName || !lastName || !age || !birthdate || !email || !password || !repeatPassword) {
                 showError(errorDiv, 'All fields are required.');
+                return;
+            }
+            if (!nameRegex.test(firstName)) {
+                showError(errorDiv, 'First name can only contain letters, spaces, hyphens, and apostrophes.');
+                return;
+            }
+            if (!nameRegex.test(lastName)) {
+                showError(errorDiv, 'Last name can only contain letters, spaces, hyphens, and apostrophes.');
                 return;
             }
             if (!email.includes('@')) {
@@ -156,18 +209,6 @@ if (document.getElementById('loginForm') && document.getElementById('registerFor
             }
             if (password !== repeatPassword) {
                 showError(errorDiv, 'Passwords do not match.');
-                return;
-            }
-            // Prevent duplicate school ID
-            try {
-                const q = query(collection(db, 'users'), where('schoolId', '==', schoolId));
-                const querySnapshot = await getDocs(q);
-                if (!querySnapshot.empty) {
-                    showError(errorDiv, 'School ID is already registered.');
-                    return;
-                }
-            } catch (err) {
-                showError(errorDiv, 'Error checking school ID.');
                 return;
             }
             // Prevent duplicate email
@@ -186,24 +227,10 @@ if (document.getElementById('loginForm') && document.getElementById('registerFor
             // Handle profile picture upload
             let profilePicUrl = '';
             if (profilePicInput && profilePicInput.files && profilePicInput.files[0]) {
-                const file = profilePicInput.files[0];
-                const formData = new FormData();
-                formData.append('file', file);
-                formData.append('upload_preset', CLOUDINARY_UNSIGNED_PRESET);
                 try {
-                    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/upload`, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    const data = await res.json();
-                    if (data.secure_url) {
-                        profilePicUrl = data.secure_url;
-                    } else {
-                        showError(errorDiv, 'Profile picture upload failed.');
-                        return;
-                    }
+                    profilePicUrl = await uploadProfilePic(profilePicInput.files[0]);
                 } catch (err) {
-                    showError(errorDiv, 'Profile picture upload failed.');
+                    showError(errorDiv, err.message);
                     return;
                 }
             }
@@ -218,7 +245,6 @@ if (document.getElementById('loginForm') && document.getElementById('registerFor
                     lastName,
                     age: Number(age),
                     birthdate,
-                    schoolId,
                     email,
                     profilePicUrl,
                     createdAt: new Date().toISOString()
@@ -407,25 +433,11 @@ if (document.getElementById('greeting') && document.getElementById('schoolId') &
             let picChanged = false;
             // If a new image is selected, upload to Cloudinary
             if (updateProfilePic && updateProfilePic.files && updateProfilePic.files[0]) {
-                const file = updateProfilePic.files[0];
-                const formData = new FormData();
-                formData.append('file', file);
-                formData.append('upload_preset', CLOUDINARY_UNSIGNED_PRESET);
                 try {
-                    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/upload`, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    const data = await res.json();
-                    if (data.secure_url) {
-                        newProfilePicUrl = data.secure_url;
-                        picChanged = true;
-                    } else {
-                        showError(updateProfileError, 'Profile picture upload failed.');
-                        return;
-                    }
+                    newProfilePicUrl = await uploadProfilePic(updateProfilePic.files[0]);
+                    picChanged = true;
                 } catch (err) {
-                    showError(updateProfileError, 'Profile picture upload failed.');
+                    showError(updateProfileError, err.message);
                     return;
                 }
             }
