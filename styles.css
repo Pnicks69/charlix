@@ -525,4 +525,805 @@ button[type="submit"]:hover {
   .save-btn, .add-btn, .remove-skill {
     display: none !important;
   }
+}
+
+/* --- CS Form 212 Personal Data Sheet Styles --- */
+.pds-body {
+  background: #f5f5f5;
+  font-family: 'Times New Roman', serif;
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.pds-container {
+  background: #fff;
+  max-width: 900px;
+  margin: 1rem auto;
+  margin-left: 280px;
+  padding: 1.5rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  transition: margin-left 0.3s ease;
+}
+
+.pds-main-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #000;
+  border-bottom: 2px solid #000;
+  padding-bottom: 1rem;
+}
+
+.pds-profile-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+.pds-profile-info {
+  flex: 1 1 0;
+  max-width: 60%;
+}
+.pds-profile-photo-container {
+  flex: 0 0 auto;
+  max-width: 120px;
+}
+
+.pds-profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+}
+
+.pds-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.pds-photo-placeholder span:first-child {
+  font-size: 24px;
+}
+
+.pds-profile-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #000;
+}
+
+.pds-profile-email {
+  font-size: 14px;
+  color: #666;
+}
+
+.pds-header {
+  text-align: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pds-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.pds-form-number {
+  font-size: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.pds-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.pds-id-section {
+  text-align: right;
+  font-size: 10px;
+}
+
+.pds-id-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.pds-id-box {
+  width: 100px;
+  height: 20px;
+  border: 1px solid #000;
+  background: #fff;
+}
+
+.pds-csc-note {
+  font-size: 8px;
+  font-style: italic;
+}
+
+.pds-instructions {
+  font-size: 9px;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.pds-section {
+  margin-bottom: 1.5rem;
+  border: 1px solid #000;
+  padding: 0.8rem;
+}
+
+.pds-section-title {
+  font-size: 12px;
+  font-weight: bold;
+  background: #f0f0f0;
+  padding: 0.3rem 0.5rem;
+  margin: -0.8rem -0.8rem 0.8rem -0.8rem;
+  border-bottom: 1px solid #000;
+  text-transform: uppercase;
+}
+
+.pds-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pds-field-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-height: 20px;
+}
+
+.pds-field-label {
+  font-size: 10px;
+  font-weight: bold;
+  min-width: 200px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.pds-name-fields {
+  display: flex;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.pds-name-box {
+  flex: 1;
+  min-height: 18px;
+  border-bottom: 1px solid #000;
+  padding: 0 0.2rem;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.pds-name-extension {
+  width: 80px;
+  min-height: 18px;
+  border-bottom: 1px solid #000;
+  padding: 0 0.2rem;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.pds-date-field {
+  width: 120px;
+  min-height: 18px;
+  border-bottom: 1px solid #000;
+  padding: 0 0.2rem;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.pds-text-field {
+  flex: 1;
+  min-height: 18px;
+  border-bottom: 1px solid #000;
+  padding: 0 0.2rem;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.pds-textarea-field {
+  flex: 1;
+  min-height: 40px;
+  border: 1px solid #000;
+  padding: 0.2rem;
+  font-size: 10px;
+  background: #fff;
+}
+
+.pds-zip-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.pds-zip-label {
+  font-size: 9px;
+  font-weight: bold;
+  min-width: 60px;
+}
+
+.pds-zip-field {
+  width: 80px;
+  min-height: 18px;
+  border-bottom: 1px solid #000;
+  padding: 0 0.2rem;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.pds-radio-group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.pds-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
+}
+
+.pds-radio input {
+  width: 12px;
+  height: 12px;
+}
+
+.pds-radio-text {
+  font-size: 10px;
+}
+
+.pds-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  flex: 1;
+}
+
+.pds-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
+}
+
+.pds-checkbox input {
+  width: 12px;
+  height: 12px;
+}
+
+.pds-checkbox-text {
+  font-size: 10px;
+}
+
+.pds-others-field {
+  width: 100px;
+  min-height: 18px;
+  border-bottom: 1px solid #000;
+  padding: 0 0.2rem;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.pds-continue-note {
+  font-size: 8px;
+  font-style: italic;
+  color: #666;
+  margin-top: 0.3rem;
+  text-align: center;
+}
+
+.pds-children-table {
+  width: 100%;
+  border: 1px solid #000;
+  margin-top: 0.3rem;
+}
+
+.pds-children-header {
+  display: flex;
+  background: #f0f0f0;
+  border-bottom: 1px solid #000;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.pds-child-name-col {
+  flex: 2;
+  padding: 0.2rem;
+  border-right: 1px solid #000;
+}
+
+.pds-child-date-col {
+  flex: 1;
+  padding: 0.2rem;
+}
+
+.pds-children-rows {
+  min-height: 60px;
+}
+
+.pds-child-row {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  min-height: 20px;
+}
+
+.pds-child-row:last-child {
+  border-bottom: none;
+}
+
+.pds-child-name {
+  flex: 2;
+  padding: 0.2rem;
+  border-right: 1px solid #ccc;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+}
+
+.pds-child-date {
+  flex: 1;
+  padding: 0.2rem;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+}
+
+.pds-education-table {
+  width: 100%;
+  border: 1px solid #000;
+  margin-top: 0.3rem;
+}
+
+.pds-edu-header {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 80px 1fr 120px 1fr;
+  background: #f0f0f0;
+  border-bottom: 1px solid #000;
+  font-size: 8px;
+  font-weight: bold;
+}
+
+.pds-edu-header > div {
+  padding: 0.2rem;
+  border-right: 1px solid #000;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pds-edu-header > div:last-child {
+  border-right: none;
+}
+
+.pds-edu-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 80px 1fr 120px 1fr;
+  border-bottom: 1px solid #ccc;
+  min-height: 30px;
+}
+
+.pds-edu-row:last-child {
+  border-bottom: none;
+}
+
+.pds-edu-level-cell {
+  padding: 0.2rem;
+  border-right: 1px solid #ccc;
+  font-size: 9px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.pds-edu-school-cell,
+.pds-edu-degree-cell,
+.pds-edu-year-cell,
+.pds-edu-grade-cell,
+.pds-edu-honors-cell {
+  padding: 0.2rem;
+  border-right: 1px solid #ccc;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+}
+
+.pds-edu-dates-cell {
+  padding: 0.2rem;
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.pds-edu-from,
+.pds-edu-to {
+  font-size: 8px;
+  min-height: 12px;
+  border-bottom: 1px solid #ccc;
+  padding: 0 0.1rem;
+  display: flex;
+  align-items: center;
+}
+
+.pds-edu-honors-cell {
+  border-right: none;
+}
+
+/* Skills, Strengths, and Weaknesses Lists */
+.pds-skills-list,
+.pds-strengths-list,
+.pds-weaknesses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.pds-skills-list .pds-list-item,
+.pds-strengths-list .pds-list-item,
+.pds-weaknesses-list .pds-list-item {
+  min-height: 18px;
+  border-bottom: 1px solid #ccc;
+  padding: 0 0.2rem;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* Work Experience Table */
+.pds-work-table {
+  width: 100%;
+  border: 1px solid #000;
+  margin-top: 0.3rem;
+}
+
+.pds-work-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.5fr;
+  background: #f0f0f0;
+  border-bottom: 1px solid #000;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+.pds-work-header > div {
+  padding: 0.2rem;
+  border-right: 1px solid #000;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pds-work-header > div:last-child {
+  border-right: none;
+}
+
+.pds-work-rows {
+  min-height: 60px;
+}
+
+.pds-work-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.5fr;
+  border-bottom: 1px solid #ccc;
+  min-height: 20px;
+}
+
+.pds-work-row:last-child {
+  border-bottom: none;
+}
+
+.pds-work-position,
+.pds-work-company,
+.pds-work-dates,
+.pds-work-highlights {
+  padding: 0.2rem;
+  border-right: 1px solid #ccc;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+}
+
+.pds-work-highlights {
+  border-right: none;
+}
+
+.pds-list {
+  margin: 0;
+  padding-left: 2rem;
+}
+
+.pds-list li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.pds-field {
+  font-weight: normal;
+  color: #333;
+}
+
+.pds-field.empty {
+  color: #999;
+  font-style: italic;
+}
+
+/* Removed the ::after pseudo-element that was adding "N/A" text */
+
+.pds-photo-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.pds-photo {
+  width: 150px;
+  height: 180px;
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+  flex-shrink: 0;
+}
+
+.pds-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pds-photo-placeholder {
+  font-size: 3rem;
+  color: #ccc;
+}
+
+.pds-personal-info {
+  flex: 1;
+}
+
+.pds-signature-section {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.pds-signature-line {
+  width: 200px;
+  border-bottom: 1px solid #000;
+  margin: 0 auto 0.5rem auto;
+  height: 1px;
+}
+
+.pds-signature-label {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.pds-date {
+  margin-top: 1rem;
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+.pds-print-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.pds-print-btn:hover {
+  background: #0056b3;
+}
+
+.pds-edit-btn {
+  position: fixed;
+  top: 20px;
+  right: 120px;
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.pds-edit-btn:hover {
+  background: #1e7e34;
+}
+
+@media print {
+  .pds-print-btn, .pds-edit-btn {
+    display: none;
+  }
+  .pds-body {
+    background: white;
+  }
+  .pds-container {
+    box-shadow: none;
+    margin: 0;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pds-container {
+    margin: 1rem;
+    margin-left: 1rem;
+    padding: 1rem;
+  }
+  .pds-photo-section {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .pds-photo {
+    align-self: center;
+  }
+  .nav-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 200px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 2rem 0 2rem 0;
+    box-shadow: 2px 0 12px rgba(44, 62, 80, 0.08);
+    transform: translateX(-220px);
+  }
+  .nav-bar.mobile-visible {
+    transform: translateX(0);
+  }
+  .burger-btn {
+    display: flex;
+  }
 } 
+
+.pds-dashboard-outer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pds-dashboard-page {
+  width: 210mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  margin: 24px auto 48px auto;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(60, 90, 130, 0.10);
+  border-radius: 8px;
+  padding: 32px 28px 48px 28px;
+  box-sizing: border-box;
+  display: block;
+}
+
+@media (max-width: 1000px) {
+  .pds-dashboard-page {
+    width: 98vw;
+    min-width: 0;
+    padding: 1.2rem 0.5rem;
+  }
+}
+
+.a4-page {
+  width: 210mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  margin: 24px auto;
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(60, 90, 130, 0.10);
+  border-radius: 8px;
+  padding: 32px 28px 48px 28px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  display: block;
+}
+
+.a4-page + .a4-page {
+  margin-top: 40px;
+}
+
+@media print {
+  .a4-page {
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+  }
+} 
+
+#nextPageBtn, #prevPageBtn {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 1000;
+  box-shadow: 0 4px 16px rgba(60, 90, 130, 0.18);
+  width: auto;
+  min-width: 120px;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: #5b8bd8;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+#nextPageBtn:hover, #prevPageBtn:hover {
+  background: #3a5e9a;
+  transform: scale(1.08);
+} 
+
+@media print {
+  .nav-bar, .burger-btn, #nextPageBtn, #prevPageBtn {
+    display: none !important;
+  }
+  .pds-dashboard-outer {
+    box-shadow: none !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+  .pds-dashboard-page {
+    box-shadow: none !important;
+    page-break-after: always;
+    display: block !important;
+    background: #fff !important;
+  }
+  body {
+    background: #fff !important;
+  }
+}

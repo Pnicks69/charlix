@@ -3,274 +3,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work Biodata</title>
+    <title>Personal Data Sheet</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <button class="burger-btn" id="burgerBtn">☰</button>
-  <nav class="nav-bar" id="navBar">
-    <div class="sidebar-profile">
-      <div class="sidebar-profile-photo">
-        <img id="sidebarPhoto" src="" alt="Profile Photo" style="display:none;" onerror="this.style.display='none';document.getElementById('sidebarPhotoPlaceholder').style.display='';">
-        <span id="sidebarPhotoPlaceholder" style="font-size:1.7rem;">👤</span>
-      </div>
-      <div class="sidebar-profile-name" id="sidebarName">input data</div>
-    </div>
+<body class="pds-body">
+  <!-- Side Panel -->
+  <div class="nav-bar" id="navBar">
     <div class="nav-links">
-      <a href="#" class="nav-link active">Profile</a>
-      <div style="position: relative; width: 100%;">
-        <a href="#" class="nav-link" id="settingsLink">Settings</a>
-        <div class="settings-dropdown" id="settingsDropdown">
-          <button class="settings-dropdown-btn" id="editProfileBtn">Edit Profile</button>
-          <button class="settings-dropdown-btn" id="logoutBtn">Logout</button>
+      <a href="dashboard.html" class="nav-link active">📋 Dashboard</a>
+      <a href="edit_profile.html" class="nav-link">✏️ Edit PDS</a>
+      <a href="#" class="nav-link" id="printPdsBtn">🖨️ Print PDS</a>
+      <a href="#" class="nav-link" id="logoutBtn">🚪 Logout</a>
+    </div>
+  </div>
+  
+  <!-- Burger Menu Button -->
+  <button class="burger-btn" id="burgerBtn">☰</button>
+  
+  <div class="pds-dashboard-outer">
+    <div id="pdsPage1" class="pds-dashboard-page">
+      <!-- Main Title -->
+      <div class="pds-main-title">PERSONAL DATA SHEET</div>
+      <!-- Profile Photo Section -->
+      <div class="pds-profile-section">
+        <div class="pds-profile-info">
+          <div class="pds-profile-name" id="pdsProfileName">Loading...</div>
+          <div class="pds-profile-email" id="pdsProfileEmail">Loading...</div>
+        </div>
+        <div class="pds-profile-photo-container">
+          <img id="pdsProfilePhoto" class="pds-profile-photo" src="" alt="Profile Photo" style="display: none;">
+          <div id="pdsPhotoPlaceholder" class="pds-photo-placeholder">
+            <span>📷</span>
+            <span>No Photo</span>
+          </div>
+        </div>
+      </div>
+      <!-- I. PERSONAL INFORMATION -->
+      <div class="pds-section">
+        <div class="pds-section-title">I. PERSONAL INFORMATION</div>
+        
+        <div class="pds-field-group">
+          <div class="pds-field-row">
+            <div class="pds-field-label">2. SURNAME, FIRST NAME, MIDDLE NAME</div>
+            <div class="pds-name-fields">
+              <div class="pds-name-box" id="pdsSurname"></div>
+              <div class="pds-name-box" id="pdsFirstName"></div>
+              <div class="pds-name-box" id="pdsMiddleName"></div>
+            </div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">3. NAME EXTENSION (e.g. Jr., Sr.)</div>
+            <div class="pds-name-extension" id="pdsNameExtension"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">4. DATE OF BIRTH (mm/dd/yyyy)</div>
+            <div class="pds-date-field" id="pdsBirthDate"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">5. PLACE OF BIRTH</div>
+            <div class="pds-text-field" id="pdsBirthPlace"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">6. SEX</div>
+            <div class="pds-radio-group">
+              <label class="pds-radio">
+                <input type="radio" name="sex" value="Male" disabled>
+                <span class="pds-radio-text">Male</span>
+              </label>
+              <label class="pds-radio">
+                <input type="radio" name="sex" value="Female" disabled>
+                <span class="pds-radio-text">Female</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">7. CIVIL STATUS</div>
+            <div class="pds-checkbox-group">
+              <label class="pds-checkbox">
+                <input type="checkbox" name="civilStatus" value="Single" disabled>
+                <span class="pds-checkbox-text">Single</span>
+              </label>
+              <label class="pds-checkbox">
+                <input type="checkbox" name="civilStatus" value="Married" disabled>
+                <span class="pds-checkbox-text">Married</span>
+              </label>
+              <label class="pds-checkbox">
+                <input type="checkbox" name="civilStatus" value="Widowed" disabled>
+                <span class="pds-checkbox-text">Widowed</span>
+              </label>
+              <label class="pds-checkbox">
+                <input type="checkbox" name="civilStatus" value="Separated" disabled>
+                <span class="pds-checkbox-text">Separated</span>
+              </label>
+              <label class="pds-checkbox">
+                <input type="checkbox" name="civilStatus" value="Annulled" disabled>
+                <span class="pds-checkbox-text">Annulled</span>
+              </label>
+              <label class="pds-checkbox">
+                <input type="checkbox" name="civilStatus" value="Others" disabled>
+                <span class="pds-checkbox-text">Others, specify</span>
+              </label>
+              <div class="pds-others-field" id="pdsCivilStatusOthers"></div>
+            </div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">8. CITIZENSHIP</div>
+            <div class="pds-text-field" id="pdsCitizenship"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">RELIGION</div>
+            <div class="pds-text-field" id="pdsReligion"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">9. HEIGHT (m)</div>
+            <div class="pds-text-field" id="pdsHeight"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">10. WEIGHT (kg)</div>
+            <div class="pds-text-field" id="pdsWeight"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">11. BLOOD TYPE</div>
+            <div class="pds-text-field" id="pdsBloodType"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">12. GSIS ID NO.</div>
+            <div class="pds-text-field" id="pdsGsisId"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">13. PAG-IBIG ID NO.</div>
+            <div class="pds-text-field" id="pdsPagibigId"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">14. PHILHEALTH NO.</div>
+            <div class="pds-text-field" id="pdsPhilhealthNo"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">15. SSS NO.</div>
+            <div class="pds-text-field" id="pdsSssNo"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">16. RESIDENTIAL ADDRESS</div>
+            <div class="pds-textarea-field" id="pdsResidentialAddress"></div>
+            <div class="pds-zip-row">
+              <span class="pds-zip-label">ZIP CODE</span>
+              <div class="pds-zip-field" id="pdsResidentialZip"></div>
+            </div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">17. TELEPHONE NO.</div>
+            <div class="pds-text-field" id="pdsResidentialPhone"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">18. PERMANENT ADDRESS</div>
+            <div class="pds-textarea-field" id="pdsPermanentAddress"></div>
+            <div class="pds-zip-row">
+              <span class="pds-zip-label">ZIP CODE</span>
+              <div class="pds-zip-field" id="pdsPermanentZip"></div>
+            </div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">19. TELEPHONE NO.</div>
+            <div class="pds-text-field" id="pdsPermanentPhone"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">20. E-MAIL ADDRESS (if any)</div>
+            <div class="pds-text-field" id="pdsEmail"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">21. CELLPHONE NO. (if any)</div>
+            <div class="pds-text-field" id="pdsCellphone"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">22. AGENCY EMPLOYEE NO.</div>
+            <div class="pds-text-field" id="pdsAgencyEmployeeNo"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">23. TIN</div>
+            <div class="pds-text-field" id="pdsTin"></div>
+          </div>
         </div>
       </div>
     </div>
-  </nav>
-  <div class="edit-profile-modal" id="editProfileModal">
-    <div class="edit-profile-content">
-      <h3>Edit Profile</h3>
-      <form id="editProfileForm">
-        <div class="input-group">
-          <label for="editProfileName">Full Name</label>
-          <input type="text" id="editProfileName" required>
+    <button id="nextPageBtn" style="margin: 32px auto 0; display: block;">Next &rarr;</button>
+    <button id="prevPageBtn" style="margin: 32px auto 16px; display: none;">&larr; Previous</button>
+    <div id="pdsPage2" class="pds-dashboard-page" style="display: none;">
+      <!-- II. FAMILY BACKGROUND -->
+      <div class="pds-section">
+        <div class="pds-section-title">II. FAMILY BACKGROUND</div>
+        
+        <div class="pds-field-group">
+          <div class="pds-field-row">
+            <div class="pds-field-label">24. SPOUSE'S SURNAME, FIRST NAME, MIDDLE NAME</div>
+            <div class="pds-name-fields">
+              <div class="pds-name-box" id="pdsSpouseSurname"></div>
+              <div class="pds-name-box" id="pdsSpouseFirstName"></div>
+              <div class="pds-name-box" id="pdsSpouseMiddleName"></div>
+            </div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">OCCUPATION</div>
+            <div class="pds-text-field" id="pdsSpouseOccupation"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">EMPLOYER/BUS. NAME</div>
+            <div class="pds-text-field" id="pdsSpouseEmployer"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">BUSINESS ADDRESS</div>
+            <div class="pds-text-field" id="pdsSpouseBusinessAddress"></div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">TELEPHONE NO.</div>
+            <div class="pds-text-field" id="pdsSpousePhone"></div>
+          </div>
+          
+          <div class="pds-continue-note">(Continue on separate sheet if necessary)</div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">25. NAME OF CHILD (Write full name and list all)</div>
+            <div class="pds-children-table" id="pdsChildrenTable">
+              <div class="pds-children-header">
+                <div class="pds-child-name-col">NAME</div>
+                <div class="pds-child-date-col">DATE OF BIRTH (mm/dd/yyyy)</div>
+              </div>
+              <div class="pds-children-rows" id="pdsChildrenRows">
+                <div class="pds-child-row">
+                  <div class="pds-child-name"></div>
+                  <div class="pds-child-date"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">26. FATHER'S SURNAME, FIRST NAME, MIDDLE NAME</div>
+            <div class="pds-name-fields">
+              <div class="pds-name-box" id="pdsFatherSurname"></div>
+              <div class="pds-name-box" id="pdsFatherFirstName"></div>
+              <div class="pds-name-box" id="pdsFatherMiddleName"></div>
+            </div>
+          </div>
+          
+          <div class="pds-field-row">
+            <div class="pds-field-label">27. MOTHER'S MAIDEN NAME (SURNAME, FIRST NAME, MIDDLE NAME)</div>
+            <div class="pds-name-fields">
+              <div class="pds-name-box" id="pdsMotherSurname"></div>
+              <div class="pds-name-box" id="pdsMotherFirstName"></div>
+              <div class="pds-name-box" id="pdsMotherMiddleName"></div>
+            </div>
+          </div>
+          
+          <div class="pds-continue-note">(Continue on separate sheet if necessary)</div>
         </div>
-        <div class="input-group">
-          <label for="editProfilePhoto">Profile Photo</label>
-          <input type="file" id="editProfilePhoto" accept="image/*">
+      </div>
+
+      <!-- III. EDUCATIONAL BACKGROUND -->
+      <div class="pds-section">
+        <div class="pds-section-title">III. EDUCATIONAL BACKGROUND</div>
+        
+        <div class="pds-education-table">
+          <div class="pds-edu-header">
+            <div class="pds-edu-level">28. LEVEL</div>
+            <div class="pds-edu-school">NAME OF SCHOOL (Write in full)</div>
+            <div class="pds-edu-degree">DEGREE COURSE (Write in full)</div>
+            <div class="pds-edu-year">YEAR GRADUATED (if graduated)</div>
+            <div class="pds-edu-grade">HIGHEST GRADE/LEVEL/UNITS EARNED (if not graduated)</div>
+            <div class="pds-edu-dates">INCLUSIVE DATES OF ATTENDANCE (From, To)</div>
+            <div class="pds-edu-honors">SCHOLARSHIP/ACADEMIC HONORS RECEIVED</div>
+          </div>
+          
+          <div class="pds-edu-row">
+            <div class="pds-edu-level-cell">ELEMENTARY</div>
+            <div class="pds-edu-school-cell" id="pdsElemSchool"></div>
+            <div class="pds-edu-degree-cell" id="pdsElemDegree"></div>
+            <div class="pds-edu-year-cell" id="pdsElemYear"></div>
+            <div class="pds-edu-grade-cell" id="pdsElemGrade"></div>
+            <div class="pds-edu-dates-cell">
+              <div class="pds-edu-from" id="pdsElemFrom"></div>
+              <div class="pds-edu-to" id="pdsElemTo"></div>
+            </div>
+            <div class="pds-edu-honors-cell" id="pdsElemHonors"></div>
+          </div>
+          
+          <div class="pds-edu-row">
+            <div class="pds-edu-level-cell">SECONDARY</div>
+            <div class="pds-edu-school-cell" id="pdsSecSchool"></div>
+            <div class="pds-edu-degree-cell" id="pdsSecDegree"></div>
+            <div class="pds-edu-year-cell" id="pdsSecYear"></div>
+            <div class="pds-edu-grade-cell" id="pdsSecGrade"></div>
+            <div class="pds-edu-dates-cell">
+              <div class="pds-edu-from" id="pdsSecFrom"></div>
+              <div class="pds-edu-to" id="pdsSecTo"></div>
+            </div>
+            <div class="pds-edu-honors-cell" id="pdsSecHonors"></div>
+          </div>
+          
+          <div class="pds-edu-row">
+            <div class="pds-edu-level-cell">VOCATIONAL / TRADE COURSE</div>
+            <div class="pds-edu-school-cell" id="pdsVocSchool"></div>
+            <div class="pds-edu-degree-cell" id="pdsVocDegree"></div>
+            <div class="pds-edu-year-cell" id="pdsVocYear"></div>
+            <div class="pds-edu-grade-cell" id="pdsVocGrade"></div>
+            <div class="pds-edu-dates-cell">
+              <div class="pds-edu-from" id="pdsVocFrom"></div>
+              <div class="pds-edu-to" id="pdsVocTo"></div>
+            </div>
+            <div class="pds-edu-honors-cell" id="pdsVocHonors"></div>
+          </div>
+          
+          <div class="pds-edu-row">
+            <div class="pds-edu-level-cell">COLLEGE</div>
+            <div class="pds-edu-school-cell" id="pdsColSchool"></div>
+            <div class="pds-edu-degree-cell" id="pdsColDegree"></div>
+            <div class="pds-edu-year-cell" id="pdsColYear"></div>
+            <div class="pds-edu-grade-cell" id="pdsColGrade"></div>
+            <div class="pds-edu-dates-cell">
+              <div class="pds-edu-from" id="pdsColFrom"></div>
+              <div class="pds-edu-to" id="pdsColTo"></div>
+            </div>
+            <div class="pds-edu-honors-cell" id="pdsColHonors"></div>
+          </div>
         </div>
-        <button type="submit">Save Changes</button>
-        <button type="button" id="cancelEditProfileBtn" style="margin-left:1rem;">Cancel</button>
-      </form>
+      </div>
+
+      <!-- IV. CAREER OBJECTIVE -->
+      <div class="pds-section">
+        <div class="pds-section-title">IV. CAREER OBJECTIVE</div>
+        <div class="pds-field-group">
+          <div class="pds-field-row">
+            <div class="pds-textarea-field" id="pdsObjective"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V. SKILLS AND QUALIFICATIONS -->
+      <div class="pds-section">
+        <div class="pds-section-title">V. SKILLS AND QUALIFICATIONS</div>
+        <div class="pds-field-group">
+          <div class="pds-skills-list" id="pdsSkillsList">
+            <!-- Skills will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- VI. WORK EXPERIENCE -->
+      <div class="pds-section">
+        <div class="pds-section-title">VI. WORK EXPERIENCE</div>
+        <div class="pds-field-group">
+          <div class="pds-work-table" id="pdsWorkTable">
+            <div class="pds-work-header">
+              <div class="pds-work-position-col">POSITION</div>
+              <div class="pds-work-company-col">COMPANY NAME</div>
+              <div class="pds-work-dates-col">INCLUSIVE DATES</div>
+              <div class="pds-work-highlights-col">RESPONSIBILITIES/HIGHLIGHTS</div>
+            </div>
+            <div class="pds-work-rows" id="pdsWorkRows">
+              <!-- Work experience will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VII. STRENGTHS -->
+      <div class="pds-section">
+        <div class="pds-section-title">VII. STRENGTHS</div>
+        <div class="pds-field-group">
+          <div class="pds-strengths-list" id="pdsStrengthsList">
+            <!-- Strengths will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- VIII. WEAKNESSES -->
+      <div class="pds-section">
+        <div class="pds-section-title">VIII. WEAKNESSES</div>
+        <div class="pds-field-group">
+          <div class="pds-weaknesses-list" id="pdsWeaknessesList">
+            <!-- Weaknesses will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="biodata-container">
-    <div class="biodata-title">WORK BIODATA</div>
 
-    <div class="biodata-section">
-      <div class="biodata-section-title">1. Personal Information</div>
-      <table class="biodata-table">
-        <tr><th>Full Name</th><td><span id="biodataName">input data</span></td></tr>
-        <tr><th>Date of Birth</th><td><span id="biodataBirthdate">input data</span></td></tr>
-        <tr><th>Age</th><td><span id="biodataAge">input data</span></td></tr>
-        <tr><th>Gender</th><td><span id="biodataGender">input data</span></td></tr>
-        <tr><th>Civil Status</th><td><span id="biodataCivilStatus">input data</span></td></tr>
-        <tr><th>Nationality</th><td><span id="biodataNationality">input data</span></td></tr>
-        <tr><th>Religion</th><td><span id="biodataReligion">input data</span></td></tr>
-        <tr><th>Complete Address</th><td><span id="biodataAddress">input data</span></td></tr>
-        <tr><th>Contact Number</th><td><span id="biodataContactNumber">input data</span></td></tr>
-        <tr><th>Email Address</th><td><span id="biodataEmailAddress">input data</span></td></tr>
-      </table>
-    </div>
-
-    <div class="biodata-section">
-      <div class="biodata-section-title">2. Career Objective</div>
-      <div style="margin-left:1.5rem; color:#2d3a4a;"><span id="biodataStatement">input data</span></div>
-    </div>
-
-    <div class="biodata-section">
-      <div class="biodata-section-title">3. Educational Background</div>
-      <table class="biodata-table biodata-subtable">
-        <tr><th>Level</th><th>School Name</th><th>Year Graduated</th><th>Honors/Awards</th></tr>
-        <tr><td>Elementary</td><td><span id="biodataElemSchool">input data</span></td><td><span id="biodataElemYear">input data</span></td><td><span id="biodataElemHonors">input data</span></td></tr>
-        <tr><td>Secondary</td><td><span id="biodataSecSchool">input data</span></td><td><span id="biodataSecYear">input data</span></td><td><span id="biodataSecHonors">input data</span></td></tr>
-        <tr><td>Tertiary</td><td><span id="biodataTertSchool">input data</span></td><td><span id="biodataTertYear">input data</span></td><td><span id="biodataTertHonors">input data</span></td></tr>
-      </table>
-    </div>
-
-    <div class="biodata-section">
-      <div class="biodata-section-title">4. Skills and Qualifications</div>
-      <ul class="biodata-list" id="biodataSkills">
-        <li>input data</li>
-        <li>input data</li>
-        <li>input data</li>
-      </ul>
-    </div>
-
-    <div class="biodata-section">
-      <div class="biodata-section-title">5. Work Experience</div>
-      <table class="biodata-table biodata-subtable" id="biodataWorkExperience">
-        <tr><th>Position</th><th>Company Name</th><th>Inclusive Dates</th><th>Responsibilities/Highlights</th></tr>
-        <tr><td>input data</td><td>input data</td><td>input data</td><td>input data</td></tr>
-        <tr><td>input data</td><td>input data</td><td>input data</td><td>input data</td></tr>
-      </table>
-    </div>
-
-    <div class="biodata-section">
-      <div class="biodata-section-title">6. Strengths</div>
-      <ul class="biodata-list" id="biodataStrengths">
-        <li>input data</li>
-      </ul>
-      <div class="biodata-section-title" style="margin-top:2rem;">7. Weaknesses</div>
-      <ul class="biodata-list" id="biodataWeaknesses">
-        <li>input data</li>
-      </ul>
-    </div>
-  </div>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
-  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyBSw3t0Picp9CrK0CsB_FXeSC7wHuZQbMw",
-    authDomain: "carlix-7fbcb.firebaseapp.com",
-    projectId: "carlix-7fbcb",
-    storageBucket: "carlix-7fbcb.firebasestorage.app",
-    messagingSenderId: "679556059179",
-    appId: "1:679556059179:web:1893b4b1063e87dd789a6e",
-    measurementId: "G-TMKR8YLFR4"
+<script type="module" src="script.js"></script>
+<script>
+  document.getElementById('nextPageBtn').onclick = function() {
+    document.getElementById('pdsPage1').style.display = 'none';
+    document.getElementById('pdsPage2').style.display = 'block';
+    document.getElementById('nextPageBtn').style.display = 'none';
+    document.getElementById('prevPageBtn').style.display = 'block';
+    window.scrollTo(0, 0);
   };
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  function setOrInput(el, value) {
-    if (el) el.textContent = value || 'input data';
-  }
-  function setOrInputImg(img, placeholder, url) {
-    if (img && url) {
-      img.src = url;
-      img.style.display = '';
-      if (placeholder) placeholder.style.display = 'none';
-      // If the image fails to load, show the placeholder
-      img.onerror = function() {
-        img.style.display = 'none';
-        if (placeholder) placeholder.style.display = '';
-      };
-    } else if (img && placeholder) {
-      img.src = '';
-      img.style.display = 'none';
-      placeholder.style.display = '';
-    }
-  }
-
-  onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      window.location.href = 'index.html';
-      return;
-    }
-    try {
-      const userDoc = await getDoc(doc(db, 'users', user.uid));
-      const data = userDoc.exists() ? userDoc.data() : {};
-      // Profile area
-      const fullName = data.fullName || ((data.firstName && data.lastName) ? data.firstName + ' ' + data.lastName : '');
-      setOrInput(document.getElementById('biodataName'), fullName);
-      setOrInput(document.getElementById('sidebarName'), fullName);
-      setOrInputImg(document.getElementById('sidebarPhoto'), document.getElementById('sidebarPhotoPlaceholder'), data.profilePicUrl);
-      // Main biodata fields
-      // Try multiple possible field names for birth date
-      const birthDate = data.dateOfBirth || data.birthdate || data.dob || '';
-      setOrInput(document.getElementById('biodataBirthdate'), birthDate);
-      setOrInput(document.getElementById('biodataAge'), data.age);
-      setOrInput(document.getElementById('biodataGender'), data.gender);
-      setOrInput(document.getElementById('biodataCivilStatus'), data.civilStatus);
-      setOrInput(document.getElementById('biodataNationality'), data.nationality);
-      setOrInput(document.getElementById('biodataReligion'), data.religion);
-      setOrInput(document.getElementById('biodataAddress'), data.address);
-      setOrInput(document.getElementById('biodataContactNumber'), data.contactNumber);
-      setOrInput(document.getElementById('biodataEmailAddress'), data.email || user.email);
-      setOrInput(document.getElementById('biodataStatement'), data.objective);
-      // Educational background
-      // Support both flat and nested education fields
-      setOrInput(document.getElementById('biodataElemSchool'), (data.education?.elementary?.school) || data.elemSchool);
-      setOrInput(document.getElementById('biodataElemYear'), (data.education?.elementary?.year) || data.elemYear);
-      setOrInput(document.getElementById('biodataElemHonors'), (data.education?.elementary?.honors) || data.elemHonors);
-      setOrInput(document.getElementById('biodataSecSchool'), (data.education?.secondary?.school) || data.secSchool);
-      setOrInput(document.getElementById('biodataSecYear'), (data.education?.secondary?.year) || data.secYear);
-      setOrInput(document.getElementById('biodataSecHonors'), (data.education?.secondary?.honors) || data.secHonors);
-      setOrInput(document.getElementById('biodataTertSchool'), (data.education?.tertiary?.school) || data.terSchool);
-      setOrInput(document.getElementById('biodataTertYear'), (data.education?.tertiary?.year) || data.terYear);
-      setOrInput(document.getElementById('biodataTertHonors'), (data.education?.tertiary?.honors) || data.terHonors);
-      // Skills (array)
-      const skillsList = document.getElementById('biodataSkills');
-      if (skillsList && Array.isArray(data.skills)) {
-        skillsList.innerHTML = '';
-        data.skills.forEach(skill => {
-          const li = document.createElement('li');
-          li.textContent = skill;
-          skillsList.appendChild(li);
-        });
-      }
-      // Work Experience (array of objects)
-      const workTable = document.getElementById('biodataWorkExperience');
-      if (workTable && Array.isArray(data.workExperience)) {
-        // Remove all rows except the header
-        workTable.innerHTML = '<tr><th>Position</th><th>Company Name</th><th>Inclusive Dates</th><th>Responsibilities/Highlights</th></tr>';
-        data.workExperience.forEach(exp => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${exp.position || ''}</td><td>${exp.company || ''}</td><td>${exp.dates || ''}</td><td>${exp.highlights || ''}</td>`;
-          workTable.appendChild(tr);
-        });
-      }
-      // Strengths (array)
-      const strengthsList = document.getElementById('biodataStrengths');
-      if (strengthsList && Array.isArray(data.strengths)) {
-        strengthsList.innerHTML = '';
-        data.strengths.forEach(strength => {
-          const li = document.createElement('li');
-          li.textContent = strength;
-          strengthsList.appendChild(li);
-        });
-      }
-      // Weaknesses (array)
-      const weaknessesList = document.getElementById('biodataWeaknesses');
-      if (weaknessesList && Array.isArray(data.weaknesses)) {
-        weaknessesList.innerHTML = '';
-        data.weaknesses.forEach(weakness => {
-          const li = document.createElement('li');
-          li.textContent = weakness;
-          weaknessesList.appendChild(li);
-        });
-      }
-    } catch (err) {
-      // Optionally show error
-    }
-  });
-
-  // Sidebar navigation logic
-  const burgerBtn = document.getElementById('burgerBtn');
-  const navBar = document.getElementById('navBar');
-  const settingsLink = document.getElementById('settingsLink');
-  const settingsDropdown = document.getElementById('settingsDropdown');
-  const editProfileBtn = document.getElementById('editProfileBtn');
-  const logoutBtn = document.getElementById('logoutBtn');
-
-  // Burger menu toggle for mobile
-  if (burgerBtn && navBar) {
-    burgerBtn.addEventListener('click', () => {
-      navBar.classList.toggle('mobile-visible');
-      navBar.classList.toggle('mobile-hidden');
-    });
-  }
-
-  // Settings dropdown toggle
-  if (settingsLink && settingsDropdown) {
-    settingsLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      settingsDropdown.classList.toggle('show');
-    });
-    // Hide dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!settingsDropdown.contains(e.target) && e.target !== settingsLink) {
-        settingsDropdown.classList.remove('show');
-      }
-    });
-  }
-
-  // Edit Profile navigation
-  if (editProfileBtn) {
-    editProfileBtn.addEventListener('click', () => {
-      window.location.href = 'edit_profile.html';
-    });
-  }
-  // Logout
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', async () => {
-      await auth.signOut();
-      window.location.href = 'index.html';
-    });
-  }
+  document.getElementById('prevPageBtn').onclick = function() {
+    document.getElementById('pdsPage2').style.display = 'none';
+    document.getElementById('pdsPage1').style.display = 'block';
+    document.getElementById('nextPageBtn').style.display = 'block';
+    document.getElementById('prevPageBtn').style.display = 'none';
+    window.scrollTo(0, 0);
+  };
 </script>
 </body>
 </html> 

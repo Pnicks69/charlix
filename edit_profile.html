@@ -131,6 +131,21 @@
       .save-btn:hover {
         background: #3a5e9a;
       }
+      .back-btn {
+        background: #6c757d;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-bottom: 1.5rem;
+        transition: background 0.2s;
+      }
+      .back-btn:hover {
+        background: #5a6268;
+      }
       @media print {
         body {
           background: #fff;
@@ -230,71 +245,270 @@
     </style>
 </head>
 <body>
-  <form class="biodata-container">
-    <button type="button" id="backBtn" class="back-btn">← Back</button>
-    <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
-      <div style="position:relative;width:120px;height:120px;">
-        <img id="profilePhotoPreview" src="" alt="Profile Photo" style="width:120px;height:120px;border-radius:50%;object-fit:cover;background:#f7faff;border:2px solid #c3d0e6;box-shadow:0 2px 8px rgba(44,62,80,0.08);position:absolute;top:0;left:0;">
-        <span id="profilePhotoPlaceholder" style="position:absolute;top:0;left:0;width:120px;height:120px;display:flex;align-items:center;justify-content:center;font-size:2.7rem;color:#b2bec3;background:#f7faff;border-radius:50%;">👤</span>
+  <!-- Side Panel -->
+  <div class="nav-bar" id="navBar">
+    <div class="nav-links">
+      <a href="dashboard.html" class="nav-link">📋 Dashboard</a>
+      <a href="edit_profile.html" class="nav-link active">✏️ Edit PDS</a>
+      <a href="#" class="nav-link" id="printPdsBtn">🖨️ Print PDS</a>
+      <a href="#" class="nav-link" id="logoutBtn">🚪 Logout</a>
+    </div>
+  </div>
+  
+  <!-- Burger Menu Button -->
+  <button class="burger-btn" id="burgerBtn">☰</button>
+  
+  <form class="pds-container">
+    <div class="pds-main-title">PERSONAL DATA SHEET</div>
+    <div class="pds-profile-section">
+      <div class="pds-profile-photo-container">
+        <img id="profilePhotoPreview" class="pds-profile-photo" src="" alt="Profile Photo" style="display: none;">
+        <div id="profilePhotoPlaceholder" class="pds-photo-placeholder">
+          <span>📷</span>
+          <span>No Photo</span>
+        </div>
       </div>
-      <div>
+      <div class="pds-profile-info">
         <label for="profilePhotoInput" style="font-weight:600;color:#3a5e9a;">Upload Profile Photo</label><br>
         <input type="file" id="profilePhotoInput" accept="image/*" style="margin-top:0.5rem;">
         <button type="button" id="uploadProfilePhotoBtn" style="margin-left:0.5rem;">Upload</button>
-        <button type="button" id="deleteProfilePhotoBtn" style="margin-left:0.5rem;background:#fff;color:#e74c3c;border:1.5px solid #e74c3c;">Delete Photo</button>
+
         <div id="profilePhotoStatus" style="font-size:0.98rem;color:#5c6b82;margin-top:0.3rem;"></div>
       </div>
     </div>
-    <div class="biodata-title">EDIT WORK BIODATA</div>
-
-    <div class="biodata-section">
-      <div class="biodata-section-title">1. Personal Information</div>
-      <table class="biodata-table">
-        <tr><th>Full Name</th><td><input type="text" name="fullName" required></td></tr>
-        <tr><th>Date of Birth</th><td><input type="date" name="dob" required></td></tr>
-        <tr><th>Age</th><td><input type="number" name="age" min="0" readonly></td></tr>
-        <tr><th>Gender</th><td><select name="gender"><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></td></tr>
-        <tr><th>Civil Status</th><td><select name="civilStatus"><option value="">Select</option><option>Single</option><option>Married</option><option>Divorced</option><option>Widowed</option></select></td></tr>
-        <tr><th>Nationality</th><td><input type="text" name="nationality"></td></tr>
-        <tr><th>Religion</th><td><input type="text" name="religion"></td></tr>
-        <tr><th>Complete Address</th><td><textarea name="address"></textarea></td></tr>
-        <tr><th>Contact Number</th><td><input type="text" name="contact"></td></tr>
-        <tr><th>Email Address</th><td><input type="email" name="email" required></td></tr>
-      </table>
+    <!-- I. PERSONAL INFORMATION -->
+    <div class="pds-section">
+      <div class="pds-section-title">I. PERSONAL INFORMATION</div>
+      <div class="pds-field-group">
+        <div class="pds-field-row">
+          <div class="pds-field-label">2. SURNAME, FIRST NAME, MIDDLE NAME</div>
+          <div class="pds-name-fields">
+            <input class="pds-name-box" name="surname" placeholder="Surname" required />
+            <input class="pds-name-box" name="firstName" placeholder="First Name" required />
+            <input class="pds-name-box" name="middleName" placeholder="Middle Name" />
+          </div>
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">3. NAME EXTENSION (e.g. Jr., Sr.)</div>
+          <input class="pds-name-extension" name="nameExtension" placeholder="e.g. Jr., Sr." />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">4. DATE OF BIRTH (mm/dd/yyyy)</div>
+          <input class="pds-date-field" name="dob" type="date" required />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">5. PLACE OF BIRTH</div>
+          <input class="pds-text-field" name="birthPlace" placeholder="Enter your place of birth" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">6. SEX</div>
+          <div class="pds-radio-group">
+            <label class="pds-radio">
+              <input type="radio" name="gender" value="Male" />
+              <span class="pds-radio-text">Male</span>
+            </label>
+            <label class="pds-radio">
+              <input type="radio" name="gender" value="Female" />
+              <span class="pds-radio-text">Female</span>
+            </label>
+          </div>
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">7. CIVIL STATUS</div>
+          <div class="pds-checkbox-group">
+            <label class="pds-checkbox">
+              <input type="radio" name="civilStatus" value="Single" />
+              <span class="pds-checkbox-text">Single</span>
+            </label>
+            <label class="pds-checkbox">
+              <input type="radio" name="civilStatus" value="Married" />
+              <span class="pds-checkbox-text">Married</span>
+            </label>
+            <label class="pds-checkbox">
+              <input type="radio" name="civilStatus" value="Widowed" />
+              <span class="pds-checkbox-text">Widowed</span>
+            </label>
+            <label class="pds-checkbox">
+              <input type="radio" name="civilStatus" value="Separated" />
+              <span class="pds-checkbox-text">Separated</span>
+            </label>
+            <label class="pds-checkbox">
+              <input type="radio" name="civilStatus" value="Annulled" />
+              <span class="pds-checkbox-text">Annulled</span>
+            </label>
+            <label class="pds-checkbox">
+              <input type="radio" name="civilStatus" value="Others" />
+              <span class="pds-checkbox-text">Others, specify</span>
+            </label>
+            <input class="pds-others-field" name="civilStatusOthers" placeholder="If Others, specify" />
+          </div>
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">8. CITIZENSHIP</div>
+          <input class="pds-text-field" name="nationality" placeholder="Enter your citizenship" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">RELIGION</div>
+          <input class="pds-text-field" name="religion" placeholder="Enter your religion" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">9. HEIGHT (m)</div>
+          <input class="pds-text-field" name="height" placeholder="e.g. 1.75" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">10. WEIGHT (kg)</div>
+          <input class="pds-text-field" name="weight" placeholder="e.g. 70" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">11. BLOOD TYPE</div>
+          <input class="pds-text-field" name="bloodType" placeholder="e.g. A+, B-, O+" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">12. GSIS ID NO.</div>
+          <input class="pds-text-field" name="gsisId" placeholder="Enter GSIS ID" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">13. PAG-IBIG ID NO.</div>
+          <input class="pds-text-field" name="pagibigId" placeholder="Enter PAG-IBIG ID" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">14. PHILHEALTH NO.</div>
+          <input class="pds-text-field" name="philhealthNo" placeholder="Enter PHILHEALTH No." />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">15. SSS NO.</div>
+          <input class="pds-text-field" name="sssNo" placeholder="Enter SSS No." />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">16. RESIDENTIAL ADDRESS</div>
+          <textarea class="pds-textarea-field" name="address" placeholder="Enter your residential address"></textarea>
+          <div class="pds-zip-row">
+            <span class="pds-zip-label">ZIP CODE</span>
+            <input class="pds-zip-field" name="residentialZip" placeholder="Enter ZIP code" />
+          </div>
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">17. TELEPHONE NO.</div>
+          <input class="pds-text-field" name="contact" placeholder="Enter residential phone" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">18. PERMANENT ADDRESS</div>
+          <textarea class="pds-textarea-field" name="permanentAddress" placeholder="Enter your permanent address"></textarea>
+          <div class="pds-zip-row">
+            <span class="pds-zip-label">ZIP CODE</span>
+            <input class="pds-zip-field" name="permanentZip" placeholder="Enter ZIP code" />
+          </div>
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">19. TELEPHONE NO.</div>
+          <input class="pds-text-field" name="permanentPhone" placeholder="Enter permanent phone" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">20. E-MAIL ADDRESS (if any)</div>
+          <input class="pds-text-field" name="email" type="email" placeholder="Enter your email address" required />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">21. CELLPHONE NO. (if any)</div>
+          <input class="pds-text-field" name="cellphone" placeholder="Enter your cellphone number" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">22. AGENCY EMPLOYEE NO.</div>
+          <input class="pds-text-field" name="agencyEmployeeNo" placeholder="Enter agency employee number" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">23. TIN</div>
+          <input class="pds-text-field" name="tin" placeholder="Enter TIN" />
+        </div>
+      </div>
+    </div>
+    <!-- II. FAMILY BACKGROUND -->
+    <div class="pds-section">
+      <div class="pds-section-title">II. FAMILY BACKGROUND</div>
+      <div class="pds-field-group">
+        <div class="pds-field-row">
+          <div class="pds-field-label">24. SPOUSE'S SURNAME, FIRST NAME, MIDDLE NAME</div>
+          <div class="pds-name-fields">
+            <input class="pds-name-box" name="spouseSurname" placeholder="Spouse Surname" />
+            <input class="pds-name-box" name="spouseFirstName" placeholder="Spouse First Name" />
+            <input class="pds-name-box" name="spouseMiddleName" placeholder="Spouse Middle Name" />
+          </div>
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">OCCUPATION</div>
+          <input class="pds-text-field" name="spouseOccupation" placeholder="Enter spouse's occupation" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">EMPLOYER/BUS. NAME</div>
+          <input class="pds-text-field" name="spouseEmployer" placeholder="Enter employer/business name" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">BUSINESS ADDRESS</div>
+          <input class="pds-text-field" name="spouseBusinessAddress" placeholder="Enter business address" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">TELEPHONE NO.</div>
+          <input class="pds-text-field" name="spousePhone" placeholder="Enter spouse's phone" />
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">FATHER'S SURNAME, FIRST NAME, MIDDLE NAME</div>
+          <div class="pds-name-fields">
+            <input class="pds-name-box" name="fatherSurname" placeholder="Father Surname" />
+            <input class="pds-name-box" name="fatherFirstName" placeholder="Father First Name" />
+            <input class="pds-name-box" name="fatherMiddleName" placeholder="Father Middle Name" />
+          </div>
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">MOTHER'S SURNAME, FIRST NAME, MIDDLE NAME</div>
+          <div class="pds-name-fields">
+            <input class="pds-name-box" name="motherSurname" placeholder="Mother Surname" />
+            <input class="pds-name-box" name="motherFirstName" placeholder="Mother First Name" />
+            <input class="pds-name-box" name="motherMiddleName" placeholder="Mother Middle Name" />
+          </div>
+        </div>
+        <div class="pds-field-row">
+          <div class="pds-field-label">CHILDREN</div>
+          <div>
+            <ul class="biodata-list" id="childrenList">
+              <li><input type="text" name="childName[]" placeholder="Child's full name"><input type="date" name="childBirthDate[]" placeholder="Birth date"><button type="button" class="remove-skill">Remove</button></li>
+            </ul>
+            <button type="button" class="add-btn" id="addChildBtn">Add Child</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="biodata-section">
-      <div class="biodata-section-title">2. Career Objective</div>
-      <textarea name="objective" style="width:100%;min-height:3.5rem;"></textarea>
+      <div class="biodata-section-title">3. Career Objective</div>
+      <textarea name="objective" placeholder="Describe your career goals and objectives" style="width:100%;min-height:3.5rem;"></textarea>
     </div>
 
     <div class="biodata-section">
-      <div class="biodata-section-title">3. Educational Background</div>
+      <div class="biodata-section-title">4. Educational Background</div>
       <table class="biodata-table biodata-subtable">
         <tr><th>Level</th><th>School Name</th><th>Year Graduated</th><th>Honors/Awards</th></tr>
-        <tr><td>Elementary</td><td><input type="text" name="elemSchool"></td><td><input type="text" name="elemYear"></td><td><input type="text" name="elemHonors"></td></tr>
-        <tr><td>Secondary</td><td><input type="text" name="secSchool"></td><td><input type="text" name="secYear"></td><td><input type="text" name="secHonors"></td></tr>
-        <tr><td>Tertiary</td><td><input type="text" name="terSchool"></td><td><input type="text" name="terYear"></td><td><input type="text" name="terHonors"></td></tr>
+        <tr><td>Elementary</td><td><input type="text" name="elemSchool" placeholder="School name"></td><td><input type="text" name="elemYear" placeholder="Year"></td><td><input type="text" name="elemHonors" placeholder="Honors/Awards"></td></tr>
+        <tr><td>Secondary</td><td><input type="text" name="secSchool" placeholder="School name"></td><td><input type="text" name="secYear" placeholder="Year"></td><td><input type="text" name="secHonors" placeholder="Honors/Awards"></td></tr>
+        <tr><td>Tertiary</td><td><input type="text" name="terSchool" placeholder="School name"></td><td><input type="text" name="terYear" placeholder="Year"></td><td><input type="text" name="terHonors" placeholder="Honors/Awards"></td></tr>
       </table>
     </div>
 
     <div class="biodata-section">
-      <div class="biodata-section-title">4. Skills and Qualifications</div>
+      <div class="biodata-section-title">5. Skills and Qualifications</div>
       <ul class="biodata-list" id="skillsList">
-        <li><input type="text" name="skills[]"><button type="button" class="remove-skill">Remove</button></li>
+        <li><input type="text" name="skills[]" placeholder="Enter your skill"><button type="button" class="remove-skill">Remove</button></li>
       </ul>
       <button type="button" class="add-btn" id="addSkillBtn">Add Skill</button>
     </div>
 
     <div class="biodata-section">
-      <div class="biodata-section-title">5. Work Experience</div>
+      <div class="biodata-section-title">6. Work Experience</div>
       <table class="biodata-table biodata-subtable" id="workExpTable">
         <tr><th>Position</th><th>Company Name</th><th>Inclusive Dates</th><th>Responsibilities/Highlights</th><th></th></tr>
         <tr>
-          <td><input type="text" name="position[]"></td>
-          <td><input type="text" name="company[]"></td>
-          <td><input type="text" name="dates[]"></td>
-          <td><input type="text" name="highlights[]"></td>
+          <td><input type="text" name="position[]" placeholder="Job title"></td>
+          <td><input type="text" name="company[]" placeholder="Company name"></td>
+          <td><input type="text" name="dates[]" placeholder="e.g., 2020-2023"></td>
+          <td><input type="text" name="highlights[]" placeholder="Key responsibilities"></td>
           <td><button type="button" class="remove-skill">Remove</button></td>
         </tr>
       </table>
@@ -302,19 +516,19 @@
     </div>
 
     <div class="biodata-section">
-      <div class="biodata-section-title">6. Strengths</div>
+      <div class="biodata-section-title">7. Strengths</div>
       <ul class="biodata-list" id="strengthsList">
-        <li><input type="text" name="strengths[]"><button type="button" class="remove-skill">Remove</button></li>
+        <li><input type="text" name="strengths[]" placeholder="Enter your strength"><button type="button" class="remove-skill">Remove</button></li>
       </ul>
       <button type="button" class="add-btn" id="addStrengthBtn">Add Strength</button>
-      <div class="biodata-section-title" style="margin-top:2rem;">7. Weaknesses</div>
+      <div class="biodata-section-title" style="margin-top:2rem;">8. Weaknesses</div>
       <ul class="biodata-list" id="weaknessesList">
-        <li><input type="text" name="weaknesses[]"><button type="button" class="remove-skill">Remove</button></li>
+        <li><input type="text" name="weaknesses[]" placeholder="Enter your weakness"><button type="button" class="remove-skill">Remove</button></li>
       </ul>
-      <button type="button" class="add-btn" id="addWeaknessBtn">Add Weakness</button>
-    </div>
+          <button type="button" class="add-btn" id="addWeaknessBtn">Add Weakness</button>
+  </div>
 
-    <button type="submit" class="save-btn">Save</button>
+  <button type="button" class="save-btn" id="saveMainFormBtn">Save Changes</button>
   </form>
   <div class="danger-zone">
     <div class="dz-title"><span style="font-size:1.5rem;">&#9888;&#65039;</span> Danger Zone</div>
@@ -356,7 +570,7 @@
       const auth = getAuth(app);
       const db = getFirestore(app);
 
-      const form = document.querySelector('.biodata-container');
+      const form = document.querySelector('.pds-container');
       const loadingMsg = document.createElement('div');
       loadingMsg.textContent = 'Loading...';
       loadingMsg.style.textAlign = 'center';
@@ -371,66 +585,141 @@
           const userDoc = await getDoc(doc(db, 'users', currentUid));
           if (userDoc.exists()) {
             const data = userDoc.data();
-            // Set all form fields
-            form.fullName.value = data.fullName || ((data.firstName && data.lastName) ? `${data.firstName} ${data.lastName}` : '');
-            form.dob.value = data.dateOfBirth || data.birthdate || data.dob || '';
-            form.age.value = data.age || '';
-            form.gender.value = data.gender || '';
-            form.civilStatus.value = data.civilStatus || '';
-            form.nationality.value = data.nationality || '';
-            form.religion.value = data.religion || '';
-            form.address.value = data.address || '';
-            form.contact.value = data.contactNumber || '';
-            form.email.value = data.email || user.email || '';
-            form.objective.value = data.objective || '';
-            form.elemSchool.value = (data.education?.elementary?.school) || data.elemSchool || '';
-            form.elemYear.value = (data.education?.elementary?.year) || data.elemYear || '';
-            form.elemHonors.value = (data.education?.elementary?.honors) || data.elemHonors || '';
-            form.secSchool.value = (data.education?.secondary?.school) || data.secSchool || '';
-            form.secYear.value = (data.education?.secondary?.year) || data.secYear || '';
-            form.secHonors.value = (data.education?.secondary?.honors) || data.secHonors || '';
-            form.terSchool.value = (data.education?.tertiary?.school) || data.terSchool || '';
-            form.terYear.value = (data.education?.tertiary?.year) || data.terYear || '';
-            form.terHonors.value = (data.education?.tertiary?.honors) || data.terHonors || '';
+            // Set all form fields (dashboard-style)
+            if (form.surname) form.surname.value = data.surname || '';
+            if (form.firstName) form.firstName.value = data.firstName || '';
+            if (form.middleName) form.middleName.value = data.middleName || '';
+            if (form.nameExtension) form.nameExtension.value = data.nameExtension || '';
+            if (form.dob) form.dob.value = data.dateOfBirth || data.birthdate || data.dob || '';
+            // Calculate age from date of birth if available
+            if (form.dob && form.age) {
+              if (form.dob.value) {
+                const today = new Date();
+                const birth = new Date(form.dob.value);
+                let age = today.getFullYear() - birth.getFullYear();
+                const monthDiff = today.getMonth() - birth.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+                  age--;
+                }
+                form.age.value = age > 0 ? age : (data.age || '');
+              } else {
+                form.age.value = data.age || '';
+              }
+            }
+            // Gender radio
+            if (data.gender) {
+              const genderRadio = form.querySelectorAll('input[name="gender"]');
+              genderRadio.forEach(r => { r.checked = (r.value === data.gender); });
+            }
+            // Civil Status checkboxes
+            if (data.civilStatus) {
+              const civilStatusCheckboxes = form.querySelectorAll('input[name="civilStatus"]');
+              civilStatusCheckboxes.forEach(cb => { cb.checked = (cb.value === data.civilStatus); });
+              if (data.civilStatus === 'Others' && form.civilStatusOthers) {
+                form.civilStatusOthers.value = data.civilStatusOthers || '';
+              }
+            }
+            if (form.nationality) form.nationality.value = data.nationality || '';
+            if (form.height) form.height.value = data.height || '';
+            if (form.weight) form.weight.value = data.weight || '';
+            if (form.bloodType) form.bloodType.value = data.bloodType || '';
+            if (form.gsisId) form.gsisId.value = data.gsisId || '';
+            if (form.pagibigId) form.pagibigId.value = data.pagibigId || '';
+            if (form.philhealthNo) form.philhealthNo.value = data.philhealthNo || '';
+            if (form.sssNo) form.sssNo.value = data.sssNo || '';
+            if (form.address) form.address.value = data.address || '';
+            if (form.residentialZip) form.residentialZip.value = data.residentialZip || '';
+            if (form.contact) form.contact.value = data.contactNumber || '';
+            if (form.permanentAddress) form.permanentAddress.value = data.permanentAddress || '';
+            if (form.permanentZip) form.permanentZip.value = data.permanentZip || '';
+            if (form.permanentPhone) form.permanentPhone.value = data.permanentPhone || '';
+            if (form.email) form.email.value = data.email || user.email || '';
+            if (form.cellphone) form.cellphone.value = data.cellphone || '';
+            if (form.agencyEmployeeNo) form.agencyEmployeeNo.value = data.agencyEmployeeNo || '';
+            if (form.tin) form.tin.value = data.tin || '';
+            if (form.religion) form.religion.value = data.religion || '';
+            // Family background
+            if (form.spouseSurname) form.spouseSurname.value = data.spouseSurname || '';
+            if (form.spouseFirstName) form.spouseFirstName.value = data.spouseFirstName || '';
+            if (form.spouseMiddleName) form.spouseMiddleName.value = data.spouseMiddleName || '';
+            if (form.spouseOccupation) form.spouseOccupation.value = data.spouseOccupation || '';
+            if (form.spouseEmployer) form.spouseEmployer.value = data.spouseEmployer || '';
+            if (form.spouseBusinessAddress) form.spouseBusinessAddress.value = data.spouseBusinessAddress || '';
+            if (form.spousePhone) form.spousePhone.value = data.spousePhone || '';
+            if (form.fatherSurname) form.fatherSurname.value = data.fatherSurname || '';
+            if (form.fatherFirstName) form.fatherFirstName.value = data.fatherFirstName || '';
+            if (form.fatherMiddleName) form.fatherMiddleName.value = data.fatherMiddleName || '';
+            if (form.motherSurname) form.motherSurname.value = data.motherSurname || '';
+            if (form.motherFirstName) form.motherFirstName.value = data.motherFirstName || '';
+            if (form.motherMiddleName) form.motherMiddleName.value = data.motherMiddleName || '';
+            // Children
+            const childrenList = document.getElementById('childrenList');
+            if (childrenList && data.children && Array.isArray(data.children)) {
+              childrenList.innerHTML = '';
+              data.children.forEach(child => {
+                const li = document.createElement('li');
+                li.innerHTML = `<input type="text" name="childName[]" value="${child.name || ''}" placeholder="Child's full name"><input type="date" name="childBirthDate[]" value="${child.birthDate || ''}" placeholder="Birth date"><button type="button" class="remove-skill">Remove</button>`;
+                childrenList.appendChild(li);
+              });
+            }
+            // Objective
+            if (form.objective) form.objective.value = data.objective || '';
+            // Education
+            if (form.elemSchool) form.elemSchool.value = (data.education?.elementary?.school) || data.elemSchool || '';
+            if (form.elemYear) form.elemYear.value = (data.education?.elementary?.year) || data.elemYear || '';
+            if (form.elemHonors) form.elemHonors.value = (data.education?.elementary?.honors) || data.elemHonors || '';
+            if (form.secSchool) form.secSchool.value = (data.education?.secondary?.school) || data.secSchool || '';
+            if (form.secYear) form.secYear.value = (data.education?.secondary?.year) || data.secYear || '';
+            if (form.secHonors) form.secHonors.value = (data.education?.secondary?.honors) || data.secHonors || '';
+            if (form.terSchool) form.terSchool.value = (data.education?.tertiary?.school) || data.terSchool || '';
+            if (form.terYear) form.terYear.value = (data.education?.tertiary?.year) || data.terYear || '';
+            if (form.terHonors) form.terHonors.value = (data.education?.tertiary?.honors) || data.terHonors || '';
             // Skills
             const skillsList = document.getElementById('skillsList');
-            skillsList.innerHTML = '';
-            (Array.isArray(data.skills) ? data.skills : ['']).forEach(skill => {
-              const li = document.createElement('li');
-              li.innerHTML = `<input type="text" name="skills[]" value="${skill}"><button type="button" class="remove-skill">Remove</button>`;
-              skillsList.appendChild(li);
-            });
+            if (skillsList) {
+              skillsList.innerHTML = '';
+              (Array.isArray(data.skills) ? data.skills : ['']).forEach(skill => {
+                const li = document.createElement('li');
+                const sanitizedSkill = skill.replace(/[<>]/g, '');
+                li.innerHTML = `<input type="text" name="skills[]" value="${sanitizedSkill}" placeholder="Enter your skill"><button type="button" class="remove-skill">Remove</button>`;
+                skillsList.appendChild(li);
+              });
+            }
             // Strengths
             const strengthsList = document.getElementById('strengthsList');
-            strengthsList.innerHTML = '';
-            (Array.isArray(data.strengths) ? data.strengths : ['']).forEach(strength => {
-              const li = document.createElement('li');
-              li.innerHTML = `<input type="text" name="strengths[]" value="${strength}"><button type="button" class="remove-skill">Remove</button>`;
-              strengthsList.appendChild(li);
-            });
+            if (strengthsList) {
+              strengthsList.innerHTML = '';
+              (Array.isArray(data.strengths) ? data.strengths : ['']).forEach(strength => {
+                const li = document.createElement('li');
+                const sanitizedStrength = strength.replace(/[<>]/g, '');
+                li.innerHTML = `<input type="text" name="strengths[]" value="${sanitizedStrength}" placeholder="Enter your strength"><button type="button" class="remove-skill">Remove</button>`;
+                strengthsList.appendChild(li);
+              });
+            }
             // Weaknesses
             const weaknessesList = document.getElementById('weaknessesList');
-            weaknessesList.innerHTML = '';
-            (Array.isArray(data.weaknesses) ? data.weaknesses : ['']).forEach(weakness => {
-              const li = document.createElement('li');
-              li.innerHTML = `<input type="text" name="weaknesses[]" value="${weakness}"><button type="button" class="remove-skill">Remove</button>`;
-              weaknessesList.appendChild(li);
-            });
+            if (weaknessesList) {
+              weaknessesList.innerHTML = '';
+              (Array.isArray(data.weaknesses) ? data.weaknesses : ['']).forEach(weakness => {
+                const li = document.createElement('li');
+                const sanitizedWeakness = weakness.replace(/[<>]/g, '');
+                li.innerHTML = `<input type="text" name="weaknesses[]" value="${sanitizedWeakness}" placeholder="Enter your weakness"><button type="button" class="remove-skill">Remove</button>`;
+                weaknessesList.appendChild(li);
+              });
+            }
             // Work Experience
             const workExpTable = document.getElementById('workExpTable');
-            workExpTable.querySelectorAll('tr:not(:first-child)').forEach(tr => tr.remove());
-            (data.workExperience || [{position:'',company:'',dates:'',highlights:''}]).forEach(exp => {
-              const row = document.createElement('tr');
-              row.innerHTML = `<td><input type="text" name="position[]" value="${exp.position||''}"></td><td><input type="text" name="company[]" value="${exp.company||''}"></td><td><input type="text" name="dates[]" value="${exp.dates||''}"></td><td><input type="text" name="highlights[]" value="${exp.highlights||''}"></td><td><button type="button" class="remove-skill">Remove</button></td>`;
-              workExpTable.appendChild(row);
-            });
-            // References
-            // The old references table and add button are removed, so this block is no longer needed.
-            // Profile Photo
-            if (data.profilePicUrl) {
-              profilePhotoPreview.src = data.profilePicUrl;
-              profilePhotoPreview.style.display = 'block';
-              profilePhotoPlaceholder.style.display = 'none';
+            if (workExpTable) {
+              workExpTable.querySelectorAll('tr:not(:first-child)').forEach(tr => tr.remove());
+              (data.workExperience || [{position:'',company:'',dates:'',highlights:''}]).forEach(exp => {
+                const row = document.createElement('tr');
+                const sanitizedPosition = (exp.position || '').replace(/[<>]/g, '');
+                const sanitizedCompany = (exp.company || '').replace(/[<>]/g, '');
+                const sanitizedDates = (exp.dates || '').replace(/[<>]/g, '');
+                const sanitizedHighlights = (exp.highlights || '').replace(/[<>]/g, '');
+                row.innerHTML = `<td><input type="text" name="position[]" value="${sanitizedPosition}" placeholder="Job title"></td><td><input type="text" name="company[]" value="${sanitizedCompany}" placeholder="Company name"></td><td><input type="text" name="dates[]" value="${sanitizedDates}" placeholder="e.g., 2020-2023"></td><td><input type="text" name="highlights[]" value="${sanitizedHighlights}" placeholder="Key responsibilities"></td><td><button type="button" class="remove-skill">Remove</button></td>`;
+                workExpTable.appendChild(row);
+              });
             }
           }
         } else {
@@ -438,54 +727,147 @@
         }
       });
 
-      form.onsubmit = async function(e) {
-        e.preventDefault();
+      // Manual save function
+      async function saveToFirestore() {
         if (!currentUid) return;
-        // Gather all data
-        const education = {
-          elementary: { school: form.elemSchool.value, year: form.elemYear.value, honors: form.elemHonors.value },
-          secondary: { school: form.secSchool.value, year: form.secYear.value, honors: form.secHonors.value },
-          tertiary: { school: form.terSchool.value, year: form.terYear.value, honors: form.terHonors.value }
-        };
-        const skills = Array.from(form.querySelectorAll('input[name="skills[]"]')).map(i => i.value).filter(Boolean);
-        const strengths = Array.from(form.querySelectorAll('input[name="strengths[]"]')).map(i => i.value).filter(Boolean);
-        const weaknesses = Array.from(form.querySelectorAll('input[name="weaknesses[]"]')).map(i => i.value).filter(Boolean);
-        const workExperience = Array.from(document.querySelectorAll('#workExpTable tr:not(:first-child)')).map(tr => {
-          const tds = tr.querySelectorAll('td');
-          return {
-            position: tds[0].querySelector('input').value,
-            company: tds[1].querySelector('input').value,
-            dates: tds[2].querySelector('input').value,
-            highlights: tds[3].querySelector('input').value
-          };
-        }).filter(exp => exp.position || exp.company || exp.dates || exp.highlights);
-        // References are removed, so this block is no longer needed.
-        // Save to Firestore
+        
         try {
+          // Gather all data
+          const education = {
+            elementary: { school: form.elemSchool.value, year: form.elemYear.value, honors: form.elemHonors.value },
+            secondary: { school: form.secSchool.value, year: form.secYear.value, honors: form.secHonors.value },
+            tertiary: { school: form.terSchool.value, year: form.terYear.value, honors: form.terHonors.value }
+          };
+          const skills = Array.from(form.querySelectorAll('input[name="skills[]"]')).map(i => i.value).filter(Boolean);
+          const strengths = Array.from(form.querySelectorAll('input[name="strengths[]"]')).map(i => i.value).filter(Boolean);
+          const weaknesses = Array.from(form.querySelectorAll('input[name="weaknesses[]"]')).map(i => i.value).filter(Boolean);
+          const workExperience = Array.from(document.querySelectorAll('#workExpTable tr:not(:first-child)')).map(tr => {
+            const tds = tr.querySelectorAll('td');
+            return {
+              position: tds[0].querySelector('input').value,
+              company: tds[1].querySelector('input').value,
+              dates: tds[2].querySelector('input').value,
+              highlights: tds[3].querySelector('input').value
+            };
+          }).filter(exp => exp.position || exp.company || exp.dates || exp.highlights);
+          
+          // Gather children data
+          const children = Array.from(document.querySelectorAll('#childrenList li')).map(li => {
+            const nameInput = li.querySelector('input[name="childName[]"]');
+            const dateInput = li.querySelector('input[name="childBirthDate[]"]');
+            return {
+              name: nameInput ? nameInput.value : '',
+              birthDate: dateInput ? dateInput.value : ''
+            };
+          }).filter(child => child.name || child.birthDate);
+          
+          // Save to Firestore
           await setDoc(doc(db, 'users', currentUid), {
-            fullName: form.fullName.value,
-            dateOfBirth: form.dob.value,
-            age: form.age.value,
-            gender: form.gender.value,
-            civilStatus: form.civilStatus.value,
-            nationality: form.nationality.value,
-            religion: form.religion.value,
-            address: form.address.value,
-            contactNumber: form.contact.value,
-            email: form.email.value,
-            objective: form.objective.value,
+            surname: form.surname ? form.surname.value : '',
+            firstName: form.firstName ? form.firstName.value : '',
+            middleName: form.middleName ? form.middleName.value : '',
+            nameExtension: form.nameExtension ? form.nameExtension.value : '',
+            dateOfBirth: form.dob ? form.dob.value : '',
+            birthPlace: form.birthPlace ? form.birthPlace.value : '',
+            age: form.age ? form.age.value : '',
+            gender: form.gender ? form.gender.value : '',
+            civilStatus: (() => {
+              const checked = Array.from(form.querySelectorAll('input[name="civilStatus"]')).find(cb => cb.checked);
+              return checked ? checked.value : '';
+            })(),
+            civilStatusOthers: form.civilStatusOthers ? form.civilStatusOthers.value : '',
+            nationality: form.nationality ? form.nationality.value : '',
+            height: form.height ? form.height.value : '',
+            weight: form.weight ? form.weight.value : '',
+            bloodType: form.bloodType ? form.bloodType.value : '',
+            gsisId: form.gsisId ? form.gsisId.value : '',
+            pagibigId: form.pagibigId ? form.pagibigId.value : '',
+            philhealthNo: form.philhealthNo ? form.philhealthNo.value : '',
+            sssNo: form.sssNo ? form.sssNo.value : '',
+            address: form.address ? form.address.value : '',
+            residentialZip: form.residentialZip ? form.residentialZip.value : '',
+            contactNumber: form.contact ? form.contact.value : '',
+            permanentAddress: form.permanentAddress ? form.permanentAddress.value : '',
+            permanentZip: form.permanentZip ? form.permanentZip.value : '',
+            permanentPhone: form.permanentPhone ? form.permanentPhone.value : '',
+            email: form.email ? form.email.value : '',
+            cellphone: form.cellphone ? form.cellphone.value : '',
+            agencyEmployeeNo: form.agencyEmployeeNo ? form.agencyEmployeeNo.value : '',
+            tin: form.tin ? form.tin.value : '',
+            religion: form.religion ? form.religion.value : '',
+            spouseSurname: form.spouseSurname ? form.spouseSurname.value : '',
+            spouseFirstName: form.spouseFirstName ? form.spouseFirstName.value : '',
+            spouseMiddleName: form.spouseMiddleName ? form.spouseMiddleName.value : '',
+            spouseOccupation: form.spouseOccupation ? form.spouseOccupation.value : '',
+            spouseEmployer: form.spouseEmployer ? form.spouseEmployer.value : '',
+            spouseBusinessAddress: form.spouseBusinessAddress ? form.spouseBusinessAddress.value : '',
+            spousePhone: form.spousePhone ? form.spousePhone.value : '',
+            fatherSurname: form.fatherSurname ? form.fatherSurname.value : '',
+            fatherFirstName: form.fatherFirstName ? form.fatherFirstName.value : '',
+            fatherMiddleName: form.fatherMiddleName ? form.fatherMiddleName.value : '',
+            motherSurname: form.motherSurname ? form.motherSurname.value : '',
+            motherFirstName: form.motherFirstName ? form.motherFirstName.value : '',
+            motherMiddleName: form.motherMiddleName ? form.motherMiddleName.value : '',
+            children: children,
+            objective: form.objective ? form.objective.value : '',
             education,
             skills,
             strengths,
             weaknesses,
             workExperience
           }, { merge: true });
-          alert('Profile updated!');
-          window.location.href = 'dashboard.html';
+          
+          // Show subtle save indicator
+          showSaveIndicator('Saved successfully');
         } catch (err) {
-          alert('Failed to save: ' + err.message);
+          console.error('Save failed:', err);
+          showSaveIndicator('Save failed', 'error');
         }
-      };
+      }
+
+      // Save indicator function
+      function showSaveIndicator(message, type = 'success') {
+        // Remove existing indicator
+        const existingIndicator = document.querySelector('.save-indicator');
+        if (existingIndicator) {
+          existingIndicator.remove();
+        }
+        
+        // Create new indicator
+        const indicator = document.createElement('div');
+        indicator.className = 'save-indicator';
+        indicator.textContent = message;
+        indicator.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: ${type === 'success' ? '#27ae60' : '#e74c3c'};
+          color: white;
+          padding: 8px 16px;
+          border-radius: 4px;
+          font-size: 14px;
+          z-index: 1000;
+          opacity: 0;
+          transition: opacity 0.3s;
+        `;
+        
+        document.body.appendChild(indicator);
+        
+        // Fade in
+        setTimeout(() => {
+          indicator.style.opacity = '1';
+        }, 10);
+        
+        // Fade out and remove after 2 seconds
+        setTimeout(() => {
+          indicator.style.opacity = '0';
+          setTimeout(() => {
+            if (indicator.parentNode) {
+              indicator.parentNode.removeChild(indicator);
+            }
+          }, 300);
+        }, 2000);
+      }
 
       // Danger Zone logic
       const dangerEmail = document.getElementById('dangerEmail');
@@ -499,87 +881,93 @@
       const deleteAccountBtn = document.getElementById('deleteAccountBtn');
       const dangerDeleteStatus = document.getElementById('dangerDeleteStatus');
 
-      // Change Email
-      changeEmailBtn.addEventListener('click', async () => {
-        dangerEmailStatus.textContent = '';
-        if (!dangerEmail.value || !currentUid) {
-          dangerEmailStatus.textContent = 'Please enter a valid email.';
-          dangerEmailStatus.style.color = 'red';
-          return;
-        }
-        try {
-          const user = auth.currentUser;
-          await updateEmail(user, dangerEmail.value);
-          await setDoc(doc(db, 'users', currentUid), { email: dangerEmail.value }, { merge: true });
-          dangerEmailStatus.textContent = 'Email updated successfully!';
-          dangerEmailStatus.style.color = 'green';
-        } catch (err) {
-          if (err.code === 'auth/requires-recent-login') {
-            dangerEmailStatus.textContent = 'Please re-authenticate to change your email.';
-          } else {
-            dangerEmailStatus.textContent = err.message || 'Failed to update email.';
+      // Only add event listeners if elements exist
+      if (changeEmailBtn && dangerEmail && dangerEmailStatus) {
+        // Change Email
+        changeEmailBtn.addEventListener('click', async () => {
+          dangerEmailStatus.textContent = '';
+          if (!dangerEmail.value || !currentUid) {
+            dangerEmailStatus.textContent = 'Please enter a valid email.';
+            dangerEmailStatus.style.color = 'red';
+            return;
           }
-          dangerEmailStatus.style.color = 'red';
-        }
-      });
+          try {
+            const user = auth.currentUser;
+            await updateEmail(user, dangerEmail.value);
+            await setDoc(doc(db, 'users', currentUid), { email: dangerEmail.value }, { merge: true });
+            dangerEmailStatus.textContent = 'Email updated successfully!';
+            dangerEmailStatus.style.color = 'green';
+          } catch (err) {
+            if (err.code === 'auth/requires-recent-login') {
+              dangerEmailStatus.textContent = 'Please re-authenticate to change your email.';
+            } else {
+              dangerEmailStatus.textContent = err.message || 'Failed to update email.';
+            }
+            dangerEmailStatus.style.color = 'red';
+          }
+        });
+      }
 
       // Change Password
-      changePasswordBtn.addEventListener('click', async () => {
-        dangerPasswordStatus.textContent = '';
-        if (!dangerOldPassword.value || !dangerNewPassword.value || !dangerRepeatPassword.value || !currentUid) {
-          dangerPasswordStatus.textContent = 'Please fill in all password fields.';
-          dangerPasswordStatus.style.color = 'red';
-          return;
-        }
-        if (dangerNewPassword.value !== dangerRepeatPassword.value) {
-          dangerPasswordStatus.textContent = 'New passwords do not match.';
-          dangerPasswordStatus.style.color = 'red';
-          return;
-        }
-        try {
-          const user = auth.currentUser;
-          // Re-authenticate with old password
-          const credential = EmailAuthProvider.credential(user.email, dangerOldPassword.value);
-          await reauthenticateWithCredential(user, credential);
-          await updatePassword(user, dangerNewPassword.value);
-          dangerPasswordStatus.textContent = 'Password updated successfully!';
-          dangerPasswordStatus.style.color = 'green';
-          dangerOldPassword.value = '';
-          dangerNewPassword.value = '';
-          dangerRepeatPassword.value = '';
-        } catch (err) {
-          if (err.code === 'auth/wrong-password') {
-            dangerPasswordStatus.textContent = 'Old password is incorrect.';
-          } else if (err.code === 'auth/requires-recent-login') {
-            dangerPasswordStatus.textContent = 'Please re-authenticate to change your password.';
-          } else {
-            dangerPasswordStatus.textContent = err.message || 'Failed to update password.';
+      if (changePasswordBtn && dangerOldPassword && dangerNewPassword && dangerRepeatPassword && dangerPasswordStatus) {
+        changePasswordBtn.addEventListener('click', async () => {
+          dangerPasswordStatus.textContent = '';
+          if (!dangerOldPassword.value || !dangerNewPassword.value || !dangerRepeatPassword.value || !currentUid) {
+            dangerPasswordStatus.textContent = 'Please fill in all password fields.';
+            dangerPasswordStatus.style.color = 'red';
+            return;
           }
-          dangerPasswordStatus.style.color = 'red';
-        }
-      });
+          if (dangerNewPassword.value !== dangerRepeatPassword.value) {
+            dangerPasswordStatus.textContent = 'New passwords do not match.';
+            dangerPasswordStatus.style.color = 'red';
+            return;
+          }
+          try {
+            const user = auth.currentUser;
+            // Re-authenticate with old password
+            const credential = EmailAuthProvider.credential(user.email, dangerOldPassword.value);
+            await reauthenticateWithCredential(user, credential);
+            await updatePassword(user, dangerNewPassword.value);
+            dangerPasswordStatus.textContent = 'Password updated successfully!';
+            dangerPasswordStatus.style.color = 'green';
+            dangerOldPassword.value = '';
+            dangerNewPassword.value = '';
+            dangerRepeatPassword.value = '';
+          } catch (err) {
+            if (err.code === 'auth/wrong-password') {
+              dangerPasswordStatus.textContent = 'Old password is incorrect.';
+            } else if (err.code === 'auth/requires-recent-login') {
+              dangerPasswordStatus.textContent = 'Please re-authenticate to change your password.';
+            } else {
+              dangerPasswordStatus.textContent = err.message || 'Failed to update password.';
+            }
+            dangerPasswordStatus.style.color = 'red';
+          }
+        });
+      }
 
       // Delete Account
-      deleteAccountBtn.addEventListener('click', async () => {
-        dangerDeleteStatus.textContent = '';
-        if (!currentUid) return;
-        if (!confirm('Are you sure you want to delete your account? This action cannot be undone.')) return;
-        try {
-          const user = auth.currentUser;
-          await deleteUser(user);
-          await setDoc(doc(db, 'users', currentUid), {}, { merge: false }); // Optionally delete user data
-          dangerDeleteStatus.textContent = 'Account deleted. Redirecting...';
-          dangerDeleteStatus.style.color = 'green';
-          setTimeout(() => { window.location.href = 'index.html'; }, 2000);
-        } catch (err) {
-          if (err.code === 'auth/requires-recent-login') {
-            dangerDeleteStatus.textContent = 'Please re-authenticate to delete your account.';
-          } else {
-            dangerDeleteStatus.textContent = err.message || 'Failed to delete account.';
+      if (deleteAccountBtn && dangerDeleteStatus) {
+        deleteAccountBtn.addEventListener('click', async () => {
+          dangerDeleteStatus.textContent = '';
+          if (!currentUid) return;
+          if (!confirm('Are you sure you want to delete your account? This action cannot be undone.')) return;
+          try {
+            const user = auth.currentUser;
+            await deleteUser(user);
+            await setDoc(doc(db, 'users', currentUid), {}, { merge: false }); // Optionally delete user data
+            dangerDeleteStatus.textContent = 'Account deleted successfully.';
+            dangerDeleteStatus.style.color = 'green';
+          } catch (err) {
+            if (err.code === 'auth/requires-recent-login') {
+              dangerDeleteStatus.textContent = 'Please re-authenticate to delete your account.';
+            } else {
+              dangerDeleteStatus.textContent = err.message || 'Failed to delete account.';
+            }
+            dangerDeleteStatus.style.color = 'red';
           }
-          dangerDeleteStatus.style.color = 'red';
-        }
-      });
+        });
+      }
 
       // --- Restore Back Button and Profile Photo Upload Functionality ---
       document.addEventListener('DOMContentLoaded', () => {
@@ -590,13 +978,108 @@
             window.history.length > 1 ? window.history.back() : window.location.href = 'dashboard.html';
           });
         }
+
+              // Add/Remove functionality for Skills, Strengths, Weaknesses, Work Experience, and Children
+      const addSkillBtn = document.getElementById('addSkillBtn');
+      const addStrengthBtn = document.getElementById('addStrengthBtn');
+      const addWeaknessBtn = document.getElementById('addWeaknessBtn');
+      const addWorkBtn = document.getElementById('addWorkBtn');
+      const addChildBtn = document.getElementById('addChildBtn');
+
+        // Add Skill
+        if (addSkillBtn) {
+          addSkillBtn.addEventListener('click', () => {
+            const skillsList = document.getElementById('skillsList');
+            const li = document.createElement('li');
+            li.innerHTML = '<input type="text" name="skills[]" placeholder="Enter your skill"><button type="button" class="remove-skill">Remove</button>';
+            skillsList.appendChild(li);
+          });
+        }
+
+        // Add Strength
+        if (addStrengthBtn) {
+          addStrengthBtn.addEventListener('click', () => {
+            const strengthsList = document.getElementById('strengthsList');
+            const li = document.createElement('li');
+            li.innerHTML = '<input type="text" name="strengths[]" placeholder="Enter your strength"><button type="button" class="remove-skill">Remove</button>';
+            strengthsList.appendChild(li);
+          });
+        }
+
+        // Add Weakness
+        if (addWeaknessBtn) {
+          addWeaknessBtn.addEventListener('click', () => {
+            const weaknessesList = document.getElementById('weaknessesList');
+            const li = document.createElement('li');
+            li.innerHTML = '<input type="text" name="weaknesses[]" placeholder="Enter your weakness"><button type="button" class="remove-skill">Remove</button>';
+            weaknessesList.appendChild(li);
+          });
+        }
+
+        // Add Work Experience
+        if (addWorkBtn) {
+          addWorkBtn.addEventListener('click', () => {
+            const workExpTable = document.getElementById('workExpTable');
+            const row = document.createElement('tr');
+            row.innerHTML = '<td><input type="text" name="position[]" placeholder="Job title"></td><td><input type="text" name="company[]" placeholder="Company name"></td><td><input type="text" name="dates[]" placeholder="e.g., 2020-2023"></td><td><input type="text" name="highlights[]" placeholder="Key responsibilities"></td><td><button type="button" class="remove-skill">Remove</button></td>';
+            workExpTable.appendChild(row);
+          });
+        }
+        
+        // Add Child
+        if (addChildBtn) {
+          addChildBtn.addEventListener('click', () => {
+            const childrenList = document.getElementById('childrenList');
+            const li = document.createElement('li');
+            li.innerHTML = '<input type="text" name="childName[]" placeholder="Child\'s full name"><input type="date" name="childBirthDate[]" placeholder="Birth date"><button type="button" class="remove-skill">Remove</button>';
+            childrenList.appendChild(li);
+          });
+        }
+
+        // Remove functionality (delegated event listener)
+        document.addEventListener('click', (e) => {
+          if (e.target.classList.contains('remove-skill')) {
+            if (confirm('Are you sure you want to remove this item?')) {
+              e.target.parentElement.remove();
+            }
+          }
+        });
+
+        // Manual save button for main form
+        const saveMainFormBtn = document.getElementById('saveMainFormBtn');
+        if (saveMainFormBtn) {
+          saveMainFormBtn.addEventListener('click', () => {
+            saveToFirestore();
+          });
+        }
+
+        // Age calculation function
+        function calculateAge(birthDate) {
+          if (!birthDate) return '';
+          const today = new Date();
+          const birth = new Date(birthDate);
+          let age = today.getFullYear() - birth.getFullYear();
+          const monthDiff = today.getMonth() - birth.getMonth();
+          if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+            age--;
+          }
+          return age > 0 ? age : '';
+        }
+
+        // Auto-calculate age when date of birth changes
+        const dobInput = form.querySelector('input[name="dob"]');
+        const ageInput = form.querySelector('input[name="age"]');
+        if (dobInput && ageInput) {
+          dobInput.addEventListener('change', () => {
+            ageInput.value = calculateAge(dobInput.value);
+          });
+        }
         // Profile photo upload
         const profilePhotoInput = document.getElementById('profilePhotoInput');
         const uploadProfilePhotoBtn = document.getElementById('uploadProfilePhotoBtn');
         const profilePhotoPreview = document.getElementById('profilePhotoPreview');
         const profilePhotoPlaceholder = document.getElementById('profilePhotoPlaceholder');
         const profilePhotoStatus = document.getElementById('profilePhotoStatus');
-        const deleteProfilePhotoBtn = document.getElementById('deleteProfilePhotoBtn');
         let uploadedProfilePicUrl = '';
         // Cloudinary config and helper
         const CLOUDINARY_CLOUD_NAME = 'dzvojulwb';
@@ -683,18 +1166,50 @@
             }
           });
         }
-        // Delete profile photo logic
-        if (deleteProfilePhotoBtn) {
-          deleteProfilePhotoBtn.addEventListener('click', async () => {
-            if (!confirm('Are you sure you want to remove your profile photo?')) return;
-            profilePhotoPreview.src = '';
-            profilePhotoPreview.style.display = 'none';
-            profilePhotoPlaceholder.style.display = 'flex';
-            profilePhotoInput.value = '';
-            profilePhotoStatus.textContent = 'Photo removed.';
-            profilePhotoStatus.style.color = '#e74c3c';
-            if (currentUid) {
-              await setDoc(doc(db, 'users', currentUid), { profilePicUrl: '' }, { merge: true });
+
+        
+        // Side Panel Functionality
+        const burgerBtn = document.getElementById('burgerBtn');
+        const navBar = document.getElementById('navBar');
+        const printPdsBtn = document.getElementById('printPdsBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        
+        // Burger menu toggle
+        if (burgerBtn && navBar) {
+          burgerBtn.addEventListener('click', () => {
+            navBar.classList.toggle('mobile-visible');
+          });
+        }
+        
+        // Print PDS functionality
+        if (printPdsBtn) {
+          printPdsBtn.addEventListener('click', () => {
+            window.print();
+          });
+        }
+        
+        // Logout functionality
+        if (logoutBtn) {
+          let isLoggingOut = false; // Flag to prevent multiple logout attempts
+          logoutBtn.addEventListener('click', async () => {
+            if (isLoggingOut) return; // Prevent multiple clicks
+            
+            isLoggingOut = true;
+            logoutBtn.textContent = 'Logging out...';
+            logoutBtn.disabled = true;
+            
+            try {
+              await auth.signOut();
+              // Clear any stored data
+              localStorage.clear();
+              sessionStorage.clear();
+              window.location.href = 'index.html';
+            } catch (error) {
+              console.error('Logout error:', error);
+              // Reset button state if logout fails
+              isLoggingOut = false;
+              logoutBtn.textContent = '🚪 Logout';
+              logoutBtn.disabled = false;
             }
           });
         }
